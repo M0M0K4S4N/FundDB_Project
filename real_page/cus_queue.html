@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="alert alert-secondary" role="alert">
+        <h1>Your Queue<br>
+          </div>
+      </div>
+      <div class="col-md-2"></div>
+
+      </div>
+
+      <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+          <button type="button" class="btn btn-primary" onclick="location.href='index.html';">Back to Homepage</button>
+          <button type="button" class="btn btn-primary" onclick="location.href='cus_menu.html';">Go to Menu</button>
+        <center><p>กำลังรอ  <p class="h1"> 13</p> คิว</p></center>
+
+        <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>รายการอาหาร</th>
+      <th>Qty</th>
+      <th>เวลาออเดอร์</th>
+      <th>สถานะ</th>
+      <th>ยกเลิก</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>ไก่ทอด</td>
+      <td>2</td>
+      <td>13/07/2017 16:30:26</td>
+      <td>เสิร์ฟแล้ว</td>
+      <td><button type="button" class="btn btn-danger" disabled>ยกเลิก</button></td>
+
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>หมูทอด</td>
+      <td>1</td>
+      <td>13/07/2017 16:31:20</td>
+      <td>กำลังทำ</td>
+      <td><button type="button" class="btn btn-danger" disabled>ยกเลิก</button></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>หมูย่าง</td>
+      <td>1</td>
+      <td>13/07/2017 16:55:20</td>
+      <td>รอคิว</td>
+      <td><button type="button" class="btn btn-danger">ยกเลิก</button></td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" class="btn btn-info" onclick="location.href='cus_payment.html';">ยืนยันจ่ายเงิน</button>
+      </div>
+      <div class="col-md-2"></div>
+
+      </div>
+    </div>
+
+
+  </body>
+</html>
