@@ -24,7 +24,7 @@
       <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
-          <form>
+        <form action="customer_register.php" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" name="name"  placeholder="Name">
@@ -37,8 +37,8 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" name="password"  placeholder="Password">
           </div>
-          <a href="cus_register_success.html"><button type="button" class="btn btn-primary">Register</button></a><!-- อย่าลืมเปลี่ยน button type ตอนทำจริง -->
-            <button type="" class="btn pull-right">Cancel</button>
+          <button type="submit" class="btn btn-primary">Register</button>
+            <button onclick="location.href='index.html';" class="btn pull-right">Cancel</button>
         </form>
 
       </div>
