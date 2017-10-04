@@ -24,8 +24,12 @@ class CustomerController extends Controller
         $customer->password = $password;
         $customer->save();
         //end INSERT
-        return view('register.index', [
-            'title' => 'Registration'
+      
+        return view('register.success', [
+            'title' => 'Register Success',
+            'show' => $customer
         ]);
     }
+
+
 }

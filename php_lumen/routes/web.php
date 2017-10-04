@@ -19,5 +19,6 @@ $router->get('/', 'IndexController@index');
 $router->get('/register', 'CustomerController@register');
 $router->post('/register', 'CustomerController@store_register_data');
 
+
 $router->get('/posts', 'PostController@index');
 $router->get('/posts/{id}', 'PostController@view');
