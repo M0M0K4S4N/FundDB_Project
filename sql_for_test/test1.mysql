@@ -1,0 +1,114 @@
+DROP DATABASE restaurantdb;
+CREATE DATABASE restaurantdb;
+
+
+CREATE TABLE IF NOT EXISTS customers
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    password VARCHAR(30),
+    address TEXT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS foods
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30),
+    price INT,
+    picture TEXT,
+    type BIGINT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS foodTypes
+(
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS orders
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    food_id INT,
+    customer_id INT,
+    Qty INT,
+    delivery_flag INT,
+    cooking_flag INT,
+    serve_flag INT,
+    detail TEXT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS promotions
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30),
+    discount_for INT,
+    discount_value INT,
+    start_date DATE,
+    end_date DATE,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS employees
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30),
+    job INT,
+    supervisor INT,
+    salary INT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS jobs
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30),
+    PRIMARY KEY(id)
+);
+
+
+ALTER TABLE foods
+    ADD   CONSTRAINT   FOREIGN KEY (type)
+    REFERENCES foodTypes(id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+;
+
+ALTER TABLE promotions
+    ADD   CONSTRAINT   FOREIGN KEY (discount_for)
+    REFERENCES foods(id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+;
+
+ALTER TABLE orders
+    ADD   CONSTRAINT   FOREIGN KEY (customer_id)
+    REFERENCES customers(id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+;
+
+ALTER TABLE orders
+    ADD   CONSTRAINT   FOREIGN KEY (food_id)
+    REFERENCES foods(id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+;
+
+ALTER TABLE employees
+    ADD    CONSTRAINT  FOREIGN KEY (job)
+    REFERENCES jobs(id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+;
+
+ALTER TABLE employees
+    ADD   CONSTRAINT   FOREIGN KEY (supervisor)
+    REFERENCES employees(id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+;
+    
