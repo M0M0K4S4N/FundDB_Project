@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<form>
+<form method="post" action="/register">
 <div class="form-group">
   <label for="name">Name</label>
-  
+
   <input type="text" class="form-control" name="name"  placeholder="Name">
 </div>
 <div class="form-group">
@@ -15,8 +15,8 @@
   <label for="password">Password</label>
   <input type="password" class="form-control" name="password"  placeholder="Password">
 </div>
-<a href="cus_register_success.html"><button type="button" class="btn btn-primary">Register</button></a><!-- อย่าลืมเปลี่ยน button type ตอนทำจริง -->
-  <button type="" class="btn pull-right">Cancel</button>
+<button type="submit" class="btn btn-primary">Register</button>
+  <button type="reset" class="btn pull-right">Cancel</button>
 </form>
 
 @endsection
