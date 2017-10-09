@@ -24,10 +24,38 @@ class CustomerController extends Controller
         $customer->password = $password;
         $customer->save();
         //end INSERT
-      
+
         return view('register.success', [
             'title' => 'Register Success',
             'show' => $customer
+        ]);
+    }
+
+    public function view_register_data()
+    {
+        $customers = Customer::all();
+        //echo $customers;
+        return view('register.view', [
+          'title' => 'View',
+          'customers' => $customers
+        ]);
+    }
+
+    public function delete_register_data(Request $request)
+    {
+
+        //echo $request->id;
+        $customer = Customer::find($request->id);
+        //echo $customer->id;
+        $customer->delete();
+
+        //$customers = Customer::all();
+        //echo $customers;
+        $customers = Customer::all();
+        //echo $customers;
+        return view('register.view', [
+          'title' => 'View',
+          'customers' => $customers
         ]);
     }
 

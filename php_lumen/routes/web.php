@@ -18,6 +18,9 @@ $router->get('/version', function () use ($router) {
 $router->get('/', 'IndexController@index');
 $router->get('/register', 'CustomerController@register');
 $router->post('/register', 'CustomerController@store_register_data');
+//crud in class
+$router->get('/register/view', 'CustomerController@view_register_data');
+$router->post('/register/view/delete', 'CustomerController@delete_register_data');
 
 
 $router->get('/posts', 'PostController@index');
