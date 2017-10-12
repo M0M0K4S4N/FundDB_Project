@@ -1,0 +1,98 @@
+DROP DATABASE IF EXISTS restaurantdb;
+CREATE DATABASE restaurantdb;
+
+# Create tables
+CREATE TABLE IF NOT EXISTS customers
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    password VARCHAR(30),
+    address TEXT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS foods
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30),
+    price INT,
+    picture TEXT,
+    type VARCHAR(30),
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS orders
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    customer_id INT,
+    delivery_flag INT,
+    detail TEXT,
+    order_time DATETIME,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS promotions
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30),
+    discount_for INT,
+    discount_value INT,
+    start_date DATE,
+    end_date DATE,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS employees
+(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30),
+    job VARCHAR(30),
+    supervisor INT,
+    salary INT,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS orderFoodLists
+(
+    order_id INT NOT NULL,
+    food_id INT NOT NULL,
+    Qty INT,
+    cook_by INT,
+    cooking_flag INT,
+    serve_flag INT,
+    isPaid INT
+);
+
+
+# Create FKs
+ALTER TABLE promotions
+    ADD    FOREIGN KEY (discount_for)
+    REFERENCES foods(id)
+;
+
+ALTER TABLE orders
+    ADD    FOREIGN KEY (customer_id)
+    REFERENCES customers(id)
+;
+
+ALTER TABLE employees
+    ADD    FOREIGN KEY (supervisor)
+    REFERENCES employees(id)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+;
+
+ALTER TABLE orderFoodLists
+    ADD    FOREIGN KEY (order_id)
+    REFERENCES orders(id)
+;
+
+ALTER TABLE orderFoodLists
+    ADD    FOREIGN KEY (food_id)
+    REFERENCES foods(id)
+;
+
+ALTER TABLE orderFoodLists
+    ADD    FOREIGN KEY (cook_by)
+    REFERENCES employees(id)
+;

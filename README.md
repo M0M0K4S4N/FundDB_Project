@@ -4,10 +4,10 @@
 #### INSTALL
 ##### 1. import table
 ```
-import test1.mysql from sql_for_test
+import test2.mysql from sql_for_test
 ```
 ##### 2.in php_lumen directory
-``` 
+```
  php composer.phar
 ```
 ```
