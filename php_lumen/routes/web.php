@@ -22,6 +22,16 @@ $router->post('/register', 'CustomerController@store_register_data');
 $router->get('/register/view', 'CustomerController@view_register_data');
 $router->post('/register/view/delete', 'CustomerController@delete_register_data');
 
+$router->get('/test',function(){
+  $vars = 'App\Models\Order'::all();
+  foreach ($vars as $var) {
+    echo "<br>";
+    echo $var;
+    echo $var->byCustomer;
+    
+  }
+
+});
 
 $router->get('/posts', 'PostController@index');
 $router->get('/posts/{id}', 'PostController@view');
