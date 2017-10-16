@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='cus_login.html';">ล๊อคอิน</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/login';">ล๊อคอิน</button>
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/register';">สมัครสมาชิก</button>
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='cus_menu.html';">ดูเมนู</button>
     <button type="button" class="btn btn-danger btn-lg btn-block" onclick="location.href='cus_promotion.html';">ดูโปรโมชั่น</button>

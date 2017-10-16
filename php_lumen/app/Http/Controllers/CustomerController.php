@@ -5,6 +5,20 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 class CustomerController extends Controller
 {
+
+    public function login()
+    {
+      return view('login', [
+          'title' => 'Customer Login'
+      ]);
+    }
+
+    public function login_authen(Request $request)
+    {
+      echo $request->input('accountNum');
+      echo $request->input('passwd');
+    }
+
     public function register()
     {
 
