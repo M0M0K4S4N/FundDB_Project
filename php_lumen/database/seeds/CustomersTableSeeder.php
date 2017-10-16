@@ -13,31 +13,31 @@ class CustomersTableSeeder extends Seeder
     {
           DB::table('customers')->insert([
            'name' => 'John Brody',
-           'password' => crypt('1234', config('user.password.salt')),
+           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
            'address' => str_random(20),
           ]);
 
           DB::table('customers')->insert([
            'name' => 'Ant Mod',
-           'password' => crypt('1234', config('user.password.salt')),
+           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
            'address' => str_random(20),
           ]);
 
           DB::table('customers')->insert([
            'name' => 'Bird Nok',
-           'password' => crypt('1234', config('user.password.salt')),
+           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
            'address' => str_random(20),
           ]);
 
           DB::table('customers')->insert([
            'name' => 'Cat Meow',
-           'password' => crypt('1234', config('user.password.salt')),
+           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
            'address' => str_random(20),
           ]);
 
           DB::table('customers')->insert([
            'name' => 'Nong Chachacha',
-           'password' => crypt('1234', config('user.password.salt')),
+           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
            'address' => str_random(20),
           ]);
 
