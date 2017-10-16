@@ -23,12 +23,13 @@ $router->get('/register/view', 'CustomerController@view_register_data');
 $router->post('/register/view/delete', 'CustomerController@delete_register_data');
 
 $router->get('/test',function(){
-  $vars = 'App\Models\Order'::all();
+  $vars = 'App\Models\Customer'::all();
+  return $vars;
   foreach ($vars as $var) {
     echo "<br>";
     echo $var;
-    echo $var->byCustomer;
-    
+
+
   }
 
 });
