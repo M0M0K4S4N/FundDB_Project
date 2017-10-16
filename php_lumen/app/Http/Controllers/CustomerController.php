@@ -30,7 +30,7 @@ class CustomerController extends Controller
     {
         $name = $request->input('name');
         $address = $request->input('address');
-        $password = crypt($request->input('password'), env('USER_PASSWORD_SALT')));
+        $password = crypt($request->input('password'), env('USER_PASSWORD_SALT'));
         //INSERT
         $customer = new Customer;
         $customer->name =$name;
