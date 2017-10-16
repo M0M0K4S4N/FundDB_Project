@@ -12,28 +12,28 @@ class EmployeesTableSeeder extends Seeder
     public function run()
     {
         DB::table('employees')->insert([
-         'name' => str_random(10),
+         'name' => 'Rob Burn',
          'job' => 'manager',
          'supervisor' => null,
          'salary' => 25000,
         ]);
 
         DB::table('employees')->insert([
-         'name' => str_random(10),
+         'name' => 'James Taylor',
          'job' => 'chef',
          'supervisor' => 1,
          'salary' => 20000,
         ]);
 
         DB::table('employees')->insert([
-         'name' => str_random(10),
+         'name' => 'Bobby Frog',
          'job' => 'waiter',
          'supervisor' => 1,
          'salary' => 10000,
         ]);
 
         DB::table('employees')->insert([
-         'name' => str_random(10),
+         'name' => 'Carl Daniel'
          'job' => 'delivery',
          'supervisor' => 1,
          'salary' => 10000,

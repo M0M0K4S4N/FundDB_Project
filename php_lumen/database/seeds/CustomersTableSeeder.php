@@ -11,12 +11,35 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 4; $i++) {
           DB::table('customers')->insert([
-           'name' => str_random(10),
+           'name' => 'John Brody',
            'password' => crypt('1234', config('user.password.salt')),
            'address' => str_random(20),
           ]);
-        }
+
+          DB::table('customers')->insert([
+           'name' => 'Ant Mod',
+           'password' => crypt('1234', config('user.password.salt')),
+           'address' => str_random(20),
+          ]);
+
+          DB::table('customers')->insert([
+           'name' => 'Bird Nok',
+           'password' => crypt('1234', config('user.password.salt')),
+           'address' => str_random(20),
+          ]);
+
+          DB::table('customers')->insert([
+           'name' => 'Cat Meow',
+           'password' => crypt('1234', config('user.password.salt')),
+           'address' => str_random(20),
+          ]);
+
+          DB::table('customers')->insert([
+           'name' => 'Nong Chachacha',
+           'password' => crypt('1234', config('user.password.salt')),
+           'address' => str_random(20),
+          ]);
+
     }
 }

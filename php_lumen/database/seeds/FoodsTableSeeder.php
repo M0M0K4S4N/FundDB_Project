@@ -11,13 +11,41 @@ class FoodsTableSeeder extends Seeder
      */
     public function run()
     {
-      for ($i=0; $i < 5; $i++) {
-        DB::table('foods')->insert([
-         'name' => str_random(10),
-         'price' => 20+$i,
-         'picture' => '/',
-         'type' => 'meal',
-        ]);
-      }
+
+      DB::table('foods')->insert([
+        'name' => 'Fried Chicken',
+        'price' => 30,
+        'picture' => '/',
+        'type' => 'meal',
+      ]);
+
+      DB::table('foods')->insert([
+        'name' => 'Tom Yum Kung',
+        'price' => 35,
+        'picture' => '/',
+        'type' => 'meal',
+      ]);
+
+      DB::table('foods')->insert([
+        'name' => 'French Fries',
+        'price' => 30,
+        'picture' => '/',
+        'type' => 'snack',
+      ]);
+
+      DB::table('foods')->insert([
+        'name' => 'Coke',
+        'price' => 20+$i,
+        'picture' => '/',
+        'type' => 'drink',
+      ]);
+
+      DB::table('foods')->insert([
+        'name' => 'Ice Cream',
+        'price' => 20+$i,
+        'picture' => '/',
+        'type' => 'dessert',
+      ]);
+
     }
 }
