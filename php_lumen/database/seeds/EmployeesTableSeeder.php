@@ -26,14 +26,14 @@ class EmployeesTableSeeder extends Seeder
         ]);
 
         DB::table('employees')->insert([
-         'name' => 'Bobby Frog',
+         'name' => 'Bob Harley',
          'job' => 'waiter',
          'supervisor' => 1,
          'salary' => 10000,
         ]);
 
         DB::table('employees')->insert([
-         'name' => 'Carl Daniel'
+         'name' => 'Ford Gibson',
          'job' => 'delivery',
          'supervisor' => 1,
          'salary' => 10000,

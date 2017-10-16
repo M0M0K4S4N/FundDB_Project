@@ -35,14 +35,14 @@ class FoodsTableSeeder extends Seeder
 
       DB::table('foods')->insert([
         'name' => 'Coke',
-        'price' => 20+$i,
+        'price' => 20,
         'picture' => '/',
         'type' => 'drink',
       ]);
 
       DB::table('foods')->insert([
         'name' => 'Ice Cream',
-        'price' => 20+$i,
+        'price' => 20,
         'picture' => '/',
         'type' => 'dessert',
       ]);
