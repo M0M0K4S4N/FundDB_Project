@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Food;
+use App\Models\Promotion;
 class CustomerController extends Controller
 {
 
@@ -80,6 +81,15 @@ class CustomerController extends Controller
         return view('customer.guest_menu', [
           'title' => 'Menu',
           'foods' => $foods
+        ]);
+    }
+
+    public function guest_view_promotion()
+    {
+        $promotions = Promotion::all();
+        return view('customer.guest_promotion', [
+          'title' => 'Menu',
+          'promotions' => $promotions
         ]);
     }
 

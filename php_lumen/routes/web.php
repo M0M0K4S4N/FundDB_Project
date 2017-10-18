@@ -17,6 +17,7 @@ $router->get('/version', function () use ($router) {
 
 $router->get('/', 'IndexController@index');
 $router->get('/menu', 'CustomerController@guest_view_menu');
+$router->get('/promotions', 'CustomerController@guest_view_promotion');
 $router->get('/register', 'CustomerController@register');
 $router->post('/register', 'CustomerController@store_register_data');
 $router->get('/login', 'CustomerController@login');
