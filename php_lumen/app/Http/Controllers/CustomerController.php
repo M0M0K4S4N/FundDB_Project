@@ -8,7 +8,7 @@ class CustomerController extends Controller
 
     public function login()
     {
-      return view('login', [
+      return view('customer.login', [
           'title' => 'Customer Login'
       ]);
     }
@@ -22,7 +22,7 @@ class CustomerController extends Controller
     public function register()
     {
 
-        return view('register.index', [
+        return view('customer.register.index', [
             'title' => 'Registration'
         ]);
     }
@@ -39,7 +39,7 @@ class CustomerController extends Controller
         $customer->save();
         //end INSERT
 
-        return view('register.success', [
+        return view('customer.register.success', [
             'title' => 'Register Success',
             'show' => $customer
         ]);
@@ -49,7 +49,7 @@ class CustomerController extends Controller
     {
         $customers = Customer::all();
         //echo $customers;
-        return view('register.view', [
+        return view('customer.register.view', [
           'title' => 'View',
           'customers' => $customers
         ]);
@@ -67,7 +67,7 @@ class CustomerController extends Controller
         //echo $customers;
         $customers = Customer::all();
         //echo $customers;
-        return view('register.view', [
+        return view('customer.register.view', [
           'title' => 'View',
           'customers' => $customers
         ]);
