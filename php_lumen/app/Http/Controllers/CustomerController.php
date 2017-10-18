@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Food;
 class CustomerController extends Controller
 {
 
@@ -70,6 +71,15 @@ class CustomerController extends Controller
         return view('customer.register.view', [
           'title' => 'View',
           'customers' => $customers
+        ]);
+    }
+
+    public function guest_view_menu()
+    {
+        $foods = Food::all();
+        return view('customer.guest_menu', [
+          'title' => 'Menu',
+          'foods' => $foods
         ]);
     }
 

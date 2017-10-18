@@ -2,7 +2,7 @@
 
 @section('content')
 
-<a href="index.html"><button type="button" class="btn btn-primary">Back to Homepage</button></a>
+<a href="/"><button type="button" class="btn btn-primary">Back to Homepage</button></a>
 
 @for ($i = 1; $i <= count($foods); $i++)
     @if ($i % 3 == 1)

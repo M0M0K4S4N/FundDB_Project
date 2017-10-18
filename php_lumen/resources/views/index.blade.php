@@ -4,7 +4,7 @@
 
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/login';">ล๊อคอิน</button>
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/register';">สมัครสมาชิก</button>
-    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='cus_menu.html';">ดูเมนู</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/menu';">ดูเมนู</button>
     <button type="button" class="btn btn-danger btn-lg btn-block" onclick="location.href='cus_promotion.html';">ดูโปรโมชั่น</button>
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='chef-queue.html';">ดูคิว สำหรับเชฟ</button>
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='manager-menu.html';">ดู เพิ่ม ลด เมนู สำหรับผู้จัดการ</button>
