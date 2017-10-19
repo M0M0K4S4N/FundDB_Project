@@ -17,6 +17,9 @@ class CustomerController extends Controller
 
     public function login_authen(Request $request)
     {
+      $request->session()->put('key', 'value');
+
+      echo $request->session()->get('key');
       echo $request->input('accountNum');
       echo $request->input('passwd');
     }
