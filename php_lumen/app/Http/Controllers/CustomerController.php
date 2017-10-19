@@ -17,12 +17,24 @@ class CustomerController extends Controller
 
     public function login_authen(Request $request)
     {
-      $request->session()->put('key', 'value');
-
-      echo $request->session()->get('key');
-      echo $request->input('accountNum');
-      echo $request->input('passwd');
-    }
+       if ($request->has('accountNum') && $request->has('passwd'))
+       {
+         $customer = Customer::where('id', $request->input('accountNum'))
+                               ->where('password', crypt($request->input('passwd'), env('USER_PASSWORD_SALT')))
+                               ->first();
+         if ($customer)
+         {
+           $token=str_random(60);
+           $customer->api_token=$token;
+           $customer->save();
+           $request->session()->put('token',$token);
+           return $this->;
+         }
+         else{
+           return $this->login();
+         }
+     }
+   }
 
     public function register()
     {
