@@ -11,9 +11,7 @@
 |
 */
 
-$router->get('/version', function () use ($router) {
-    return $router->app->version();
-});
+use Illuminate\Http\Request;
 
 $router->get('/', 'IndexController@index');
 $router->get('/menu', 'CustomerController@guest_view_menu');
@@ -22,6 +20,9 @@ $router->get('/register', 'CustomerController@register');
 $router->post('/register', 'CustomerController@store_register_data');
 $router->get('/login', 'CustomerController@login');
 $router->post('/login', 'CustomerController@login_authen');
+$router->get('/logout','CustomerController@logout');
+
+$router->get('/customer/menu', 'CustomerController@view_menu');
 
 
 //crud in class

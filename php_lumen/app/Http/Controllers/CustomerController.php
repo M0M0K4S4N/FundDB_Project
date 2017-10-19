@@ -8,8 +8,12 @@ use App\Models\Promotion;
 class CustomerController extends Controller
 {
 
-    public function login()
+    public function login(Request $request)
     {
+      if($request->session()->has('token'))
+      {
+        return redirect('/customer/menu');
+      }
       return view('customer.login', [
           'title' => 'Customer Login'
       ]);
@@ -28,13 +32,33 @@ class CustomerController extends Controller
            $customer->api_token=$token;
            $customer->save();
            $request->session()->put('token',$token);
-           return $this->;
+           //return $this->view_menu($request);
+           return redirect('/customer/menu');
          }
          else{
            return $this->login();
          }
      }
    }
+   public function logout(Request $request)
+   {
+     $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+     $user->api_token=null;
+     $user->save();
+     $request->session()->forget('token');
+     return redirect('/');
+   }
+
+   public function view_menu(Request $request)
+   {
+      $foods = Food::all();
+      $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+      return view('customer.menu', [
+              'title' => 'Menu',
+              'foods' => $foods,
+              'user'  => $user
+              ]);
+  }
 
     public function register()
     {
