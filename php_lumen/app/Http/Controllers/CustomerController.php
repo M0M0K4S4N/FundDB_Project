@@ -42,22 +42,31 @@ class CustomerController extends Controller
    }
    public function logout(Request $request)
    {
-     $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
-     $user->api_token=null;
-     $user->save();
-     $request->session()->forget('token');
-     return redirect('/');
+     if($request->session()->has('token'))
+     {
+       $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+       $user->api_token=str_random(30);
+       $user->save();
+       $request->session()->forget('token');
+
+     }
+   return redirect('/');
    }
 
    public function view_menu(Request $request)
    {
-      $foods = Food::all();
-      $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
-      return view('customer.menu', [
-              'title' => 'Menu',
-              'foods' => $foods,
-              'user'  => $user
-              ]);
+     if($request->session()->has('token'))
+     {
+       $foods = Food::all();
+       $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+       return view('customer.menu', [
+               'title' => 'Menu',
+               'foods' => $foods,
+               'user'  => $user
+               ]);
+     }
+     return redirect('/menu');
+
   }
 
     public function register()
