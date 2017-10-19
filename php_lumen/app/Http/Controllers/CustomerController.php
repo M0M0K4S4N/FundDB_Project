@@ -44,12 +44,19 @@ class CustomerController extends Controller
    {
      if($request->session()->has('token'))
      {
+       echo $request->session()->get('token');
+
        $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
-       $user->api_token=str_random(30);
-       $user->save();
-       $request->session()->forget('token');
+      if($user)
+      {
+        $user->api_token=str_random(30);
+        $user->save();
+      }
+     $request->session()->forget('token');
+
 
      }
+     $request->session()->forget('token');
    return redirect('/');
    }
 
@@ -59,6 +66,10 @@ class CustomerController extends Controller
      {
        $foods = Food::all();
        $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+       if(!$user)
+       {
+         return redirect('/logout');
+       }
        return view('customer.menu', [
                'title' => 'Menu',
                'foods' => $foods,
