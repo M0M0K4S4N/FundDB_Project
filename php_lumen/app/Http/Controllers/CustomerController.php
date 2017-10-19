@@ -124,8 +124,12 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function guest_view_menu()
+    public function guest_view_menu(Request $request)
     {
+      if($request->session()->has('token'))
+      {
+        return redirect('/customer/menu');
+      }
         $foods = Food::all();
         return view('customer.guest_menu', [
           'title' => 'Menu',

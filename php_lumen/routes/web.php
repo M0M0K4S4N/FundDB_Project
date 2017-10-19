@@ -11,8 +11,6 @@
 |
 */
 
-use Illuminate\Http\Request;
-
 $router->get('/', 'IndexController@index');
 $router->get('/menu', 'CustomerController@guest_view_menu');
 $router->get('/promotions', 'CustomerController@guest_view_promotion');
@@ -26,5 +24,5 @@ $router->get('/customer/menu', 'CustomerController@view_menu');
 
 
 //crud in class
-$router->get('/register/view', 'CustomerController@view_register_data');
-$router->post('/register/view/delete', 'CustomerController@delete_register_data');
+$router->get('/crud/register/view', 'CustomerController@view_register_data');
+$router->post('/crud/register/view/delete', 'CustomerController@delete_register_data');
