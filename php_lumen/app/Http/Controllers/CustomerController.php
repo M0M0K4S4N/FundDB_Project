@@ -86,6 +86,7 @@ class CustomerController extends Controller
         $customer->name =$name;
         $customer->address = $address;
         $customer->password = $password;
+        $customer->api_token = str_random(30);
         $customer->save();
         //end INSERT
 
