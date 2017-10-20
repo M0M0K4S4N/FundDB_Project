@@ -11,10 +11,6 @@
 |
 */
 
-$router->get('/version', function () use ($router) {
-    return $router->app->version();
-});
-
 $router->get('/', 'IndexController@index');
 $router->get('/menu', 'CustomerController@guest_view_menu');
 $router->get('/promotions', 'CustomerController@guest_view_promotion');
@@ -22,8 +18,11 @@ $router->get('/register', 'CustomerController@register');
 $router->post('/register', 'CustomerController@store_register_data');
 $router->get('/login', 'CustomerController@login');
 $router->post('/login', 'CustomerController@login_authen');
+$router->get('/logout','CustomerController@logout');
+
+$router->get('/customer/menu', 'CustomerController@view_menu');
 
 
 //crud in class
-$router->get('/register/view', 'CustomerController@view_register_data');
-$router->post('/register/view/delete', 'CustomerController@delete_register_data');
+$router->get('/crud/register/view', 'CustomerController@view_register_data');
+$router->post('/crud/register/view/delete', 'CustomerController@delete_register_data');

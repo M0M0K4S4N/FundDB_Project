@@ -8,8 +8,12 @@ use App\Models\Promotion;
 class CustomerController extends Controller
 {
 
-    public function login()
+    public function login(Request $request)
     {
+      if($request->session()->has('token'))
+      {
+        return redirect('/customer/menu');
+      }
       return view('customer.login', [
           'title' => 'Customer Login'
       ]);
@@ -17,9 +21,64 @@ class CustomerController extends Controller
 
     public function login_authen(Request $request)
     {
-      echo $request->input('accountNum');
-      echo $request->input('passwd');
-    }
+       if ($request->has('accountNum') && $request->has('passwd'))
+       {
+         $customer = Customer::where('id', $request->input('accountNum'))
+                               ->where('password', crypt($request->input('passwd'), env('USER_PASSWORD_SALT')))
+                               ->first();
+         if ($customer)
+         {
+           $token=str_random(60);
+           $customer->api_token=$token;
+           $customer->save();
+           $request->session()->put('token',$token);
+           //return $this->view_menu($request);
+           return redirect('/customer/menu');
+         }
+         else{
+           return $this->login();
+         }
+     }
+   }
+   public function logout(Request $request)
+   {
+     if($request->session()->has('token'))
+     {
+       echo $request->session()->get('token');
+
+       $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+      if($user)
+      {
+        $user->api_token=str_random(30);
+        $user->save();
+      }
+     $request->session()->forget('token');
+
+
+     }
+     $request->session()->forget('token');
+   return redirect('/');
+   }
+
+   public function view_menu(Request $request)
+   {
+     if($request->session()->has('token'))
+     {
+       $foods = Food::all();
+       $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+       if(!$user)
+       {
+         return redirect('/logout');
+       }
+       return view('customer.menu', [
+               'title' => 'Menu',
+               'foods' => $foods,
+               'user'  => $user
+               ]);
+     }
+     return redirect('/menu');
+
+  }
 
     public function register()
     {
@@ -38,6 +97,7 @@ class CustomerController extends Controller
         $customer->name =$name;
         $customer->address = $address;
         $customer->password = $password;
+        $customer->api_token = str_random(30);
         $customer->save();
         //end INSERT
 
@@ -75,8 +135,12 @@ class CustomerController extends Controller
         ]);
     }
 
-    public function guest_view_menu()
+    public function guest_view_menu(Request $request)
     {
+      if($request->session()->has('token'))
+      {
+        return redirect('/customer/menu');
+      }
         $foods = Food::all();
         return view('customer.guest_menu', [
           'title' => 'Menu',

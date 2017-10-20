@@ -66,7 +66,18 @@ $app->singleton(
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
+$app->configure('session');
 
+// Add `Session` middleware
+$app->middleware(Illuminate\Session\Middleware\StartSession::class);
+
+// Add `SessionServiceProvider`
+$app->register(Illuminate\Session\SessionServiceProvider::class);
+
+// fix `BindingResolutionException` problem
+$app->bind(Illuminate\Session\SessionManager::class, function ($app) {
+    return $app->make('session');
+});
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers

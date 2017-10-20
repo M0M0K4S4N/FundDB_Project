@@ -3,6 +3,7 @@
 @section('content')
 
 <form method="post" action="/login">
+    
 <div class="form-group">
   <label for="accnumInput">Account Number</label>
   <input type="text" class="form-control" name="accountNum"  placeholder="Enter Account Number">
