@@ -40,7 +40,7 @@ class CustomerController extends Controller
            return redirect('/customer/menu');
          }
          else{
-           return $this->login();
+           return redirect('/login');
          }
      }
     }
@@ -115,9 +115,14 @@ class CustomerController extends Controller
           $newFood->save();
         }
         //echo 'yey!';
-        return redirect('/customer/order');
+        //return redirect('/customer/order');
       }
 
+    }
+
+    public function view_order(Request $request)
+    {
+      
     }
 
     public function register()
