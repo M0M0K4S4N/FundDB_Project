@@ -10,10 +10,15 @@ use App\Models\Orderfoodlist;
 use Carbon\Carbon;
 class CustomerController extends Controller
 {
-
+    private function get_user($key)
+    {
+      $out = Customer:: where('api_token', '=', $key)->first();
+      return $out;
+    }
 
     public function login(Request $request)
     {
+
       if($request->session()->has('token'))
       {
         return redirect('/customer/menu');
@@ -50,7 +55,7 @@ class CustomerController extends Controller
      {
        echo $request->session()->get('token');
 
-       $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+       $user = $this->get_user($request->session()->get('token'));
       if($user)
       {
         $user->api_token=str_random(30);
@@ -69,7 +74,7 @@ class CustomerController extends Controller
      if($request->session()->has('token'))
      {
        $foods = Food::all();
-       $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+       $user = $this->get_user($request->session()->get('token'));
        if(!$user)
        {
          return redirect('/logout');
@@ -91,7 +96,7 @@ class CustomerController extends Controller
         $foods = $request->input('food');
         $qty = $request->input('qty');
         $detail = $request->input('detail');
-        $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+        $user = $this->get_user($request->session()->get('token'));
         if(!$user)
         {
           return redirect('/logout');
@@ -122,7 +127,7 @@ class CustomerController extends Controller
 
     public function view_order(Request $request)
     {
-      
+
     }
 
     public function register()
