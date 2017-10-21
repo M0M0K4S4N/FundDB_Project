@@ -17,7 +17,7 @@
 <a href="/"><button type="button" class="btn btn-primary">Back to Homepage</button></a>
 
 <h4>You are logged in as {{$user->name}} <button type="button" class="btn btn-danger sm" onclick="location.href='/logout';">Logout</button></h4>
-<form method="post" action="/order">
+<form method="post" action="/customer/order">
 @for ($i = 1; $i <= count($foods); $i++)
     @if ($i % 3 == 1)
 
@@ -37,6 +37,7 @@
     </div>
     <div class="card-footer">
       <big class="text-muted">ราคา {{$foods[$i-1]->price}} บาท</big>
+      <input type="number" name="qty[]" value="1">
       <input type="checkbox" class="chk" id="img{{$i}}"name="food[]" value="{{$foods[$i-1]->id}}">
     </div>
   </div>
@@ -47,6 +48,7 @@
     @endif
 
 @endfor
+<input type="text"  name="detail" value="">
 <button type="submit" class="btn btn-primary">Order</button>
 </form>
 

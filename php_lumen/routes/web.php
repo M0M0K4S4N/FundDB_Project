@@ -21,6 +21,9 @@ $router->post('/login', 'CustomerController@login_authen');
 $router->get('/logout','CustomerController@logout');
 
 $router->get('/customer/menu', 'CustomerController@view_menu');
+$router->post('/customer/queue', 'CustomerController@view_menu');
+$router->get('/customer/queue', 'CustomerController@view_menu');
+$router->post('/customer/order', 'CustomerController@place_order');
 
 
 //crud in class

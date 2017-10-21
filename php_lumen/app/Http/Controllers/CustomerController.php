@@ -5,8 +5,12 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Food;
 use App\Models\Promotion;
+use App\Models\Order;
+use App\Models\Orderfoodlist;
+use Carbon\Carbon;
 class CustomerController extends Controller
 {
+
 
     public function login(Request $request)
     {
@@ -39,9 +43,9 @@ class CustomerController extends Controller
            return $this->login();
          }
      }
-   }
-   public function logout(Request $request)
-   {
+    }
+    public function logout(Request $request)
+    {
      if($request->session()->has('token'))
      {
        echo $request->session()->get('token');
@@ -57,11 +61,11 @@ class CustomerController extends Controller
 
      }
      $request->session()->forget('token');
-   return redirect('/');
+     return redirect('/');
    }
 
-   public function view_menu(Request $request)
-   {
+    public function view_menu(Request $request)
+    {
      if($request->session()->has('token'))
      {
        $foods = Food::all();
@@ -76,9 +80,45 @@ class CustomerController extends Controller
                'user'  => $user
                ]);
      }
-     return redirect('/menu');
+      return redirect('/menu');
 
-  }
+    }
+
+    public function place_order(Request $request)
+    {
+      if($request->session()->has('token'))
+      {
+        $foods = $request->input('food');
+        $qty = $request->input('qty');
+        $detail = $request->input('detail');
+        $user = Customer:: where('api_token', '=', $request->session()->get('token'))->first();
+        if(!$user)
+        {
+          return redirect('/logout');
+        }
+        $newOrder = new Order;
+        $newOrder->customer_id = $user->id;
+        $newOrder->delivery_flag = 0; ###temp
+        $newOrder->detail = $detail;
+        $newOrder->order_time = Carbon::now();
+        $newOrder->save();
+        foreach ($foods as $food)
+        {
+          $newFood = new Orderfoodlist;
+          $newFood->order_id = $newOrder->id;
+          $newFood->food_id = $food;
+          $newFood->Qty = $qty[$food-1];
+          $newFood->cook_by = null;
+          $newFood->cooking_flag = 0;
+          $newFood->serve_flag = 0;
+          $newFood->isPaid = 0;
+          $newFood->save();
+        }
+        //echo 'yey!';
+        return redirect('/customer/order');
+      }
+
+    }
 
     public function register()
     {
