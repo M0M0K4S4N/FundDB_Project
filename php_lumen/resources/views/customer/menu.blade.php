@@ -16,7 +16,8 @@
 
 <a href="/"><button type="button" class="btn btn-primary">Back to Homepage</button></a>
 <a href="/customer/queue"><button type="button" class="btn btn-primary">My order queue</button></a>
-<h4>You are logged in as {{$user->name}} <button type="button" class="btn btn-danger sm" onclick="location.href='/logout';">Logout</button></h4>
+<object align="right">You are  <font size="4" color="blue">{{$user->name}}</font> <button type="button" class="btn btn-danger btn-sm" onclick="location.href='/logout';">Logout</button>
+</object>
 <form method="post" action="/customer/order">
 @for ($i = 1; $i <= count($foods); $i++)
     @if ($i % 3 == 1)

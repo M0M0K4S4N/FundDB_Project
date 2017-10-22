@@ -1,5 +1,5 @@
 @section('header')
-
+<meta http-equiv="Refresh" content="5">
 @endsection
 
 @extends('layouts.app')
@@ -7,6 +7,8 @@
 @section('content')
 <button type="button" class="btn btn-primary" onclick="location.href='/';">Back to Homepage</button>
 <button type="button" class="btn btn-primary" onclick="location.href='/customer/menu';">Go to Menu</button>
+<object align="right">You are  <font size="4" color="blue">{{$user->name}}</font> <button type="button" class="btn btn-danger btn-sm" onclick="location.href='/logout';">Logout</button>
+</object>
 <center><p>กำลังรอ  <p class="h1"> {{$queue}}</p> คิว</p></center>
 
 <table class="table table-striped">
@@ -33,7 +35,7 @@
   <td>{{$order->order_time}}</td>
   <td>
   @if ($order->serve_flag == 1)
-    @if($oreder->delivery_flag == 0)
+    @if($order->delivery_flag == 0)
       เสิร์ฟแล้ว
     @else
       จัดส่งแล้ว

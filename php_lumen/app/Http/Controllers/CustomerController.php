@@ -166,7 +166,8 @@ class CustomerController extends Controller
       return view('customer.queue', [
           'title' => 'Queue',
           'orders' => $customerOrders,
-          'queue' => $waiting
+          'queue' => $waiting,
+          'user' => $user
       ]);
     }
 
