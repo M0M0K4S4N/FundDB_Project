@@ -15,6 +15,7 @@ class CreateOrderfoodlistsTable extends Migration
     {
         Schema::dropIfExists('orderfoodlists');
         Schema::create('orderfoodlists', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('order_id')->unsigned()->nullable();
             $table->integer('food_id')->unsigned()->nullable();
             $table->integer('Qty')->unsigned();
