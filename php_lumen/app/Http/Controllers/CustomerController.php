@@ -67,7 +67,7 @@ class CustomerController extends Controller
 
      }
      $request->session()->forget('token');
-     return redirect('/');
+     return redirect('/login');
    }
 
     public function view_menu(Request $request)
@@ -121,9 +121,24 @@ class CustomerController extends Controller
           $newFood->save();
         }
         //echo 'yey!';
-        //return redirect('/customer/order');
+        return redirect('/customer/queue');
       }
 
+    }
+
+    private function get_waiting_queue($first_id)
+    {
+      $list  = Orderfoodlist::all();
+      $count = 0;
+      foreach ($list as $elem)
+      {
+        if($elem->id == $first_id)
+        {
+          break;
+        }
+        $count++;
+      }
+      return $count;
     }
 
     public function view_order(Request $request)
@@ -145,13 +160,39 @@ class CustomerController extends Controller
                           ->select('orderfoodlists.*','foods.name as food_name','orders.order_time','orders.delivery_flag')
                           ->get();
 
-
-      echo $customerOrders;
+      $waiting = $this->get_waiting_queue($customerOrders[0]->id);
+      //echo $customerOrders;
 
       return view('customer.queue', [
           'title' => 'Queue',
-          'orders' => $customerOrders
+          'orders' => $customerOrders,
+          'queue' => $waiting
       ]);
+    }
+
+    public function delete_food_queue(Request $request)
+    {
+      if(!$request->session()->has('token'))
+      {
+        return redirect('/login');
+      }
+      $user = $this->get_user($request->session()->get('token'));
+      if(!$user)
+      {
+        return redirect('/logout');
+      }
+      $food_id = $request->get('food_id');
+      $order_id = $request->get('order_id');
+      $qty = $request->get('qty');
+      $food = Orderfoodlist::where('food_id', $food_id)
+                             ->where('order_id', $order_id)
+                             ->where('Qty',$qty)
+                             ->where('cooking_flag',0)
+                             ->where('serve_flag',0)
+                             ->where('isPaid',0)
+                             ->first();
+      $food->delete();
+      return redirect('/customer/queue');
     }
 
     public function register()

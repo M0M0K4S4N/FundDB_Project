@@ -7,7 +7,7 @@
 @section('content')
 <button type="button" class="btn btn-primary" onclick="location.href='/';">Back to Homepage</button>
 <button type="button" class="btn btn-primary" onclick="location.href='/customer/menu';">Go to Menu</button>
-<center><p>กำลังรอ  <p class="h1"> 13</p> คิว</p></center>
+<center><p>กำลังรอ  <p class="h1"> {{$queue}}</p> คิว</p></center>
 
 <table class="table table-striped">
 <thead>

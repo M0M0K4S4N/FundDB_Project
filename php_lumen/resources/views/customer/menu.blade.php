@@ -5,7 +5,7 @@
     .img {
     }
     input.chk{
-    margin-left: 70px;
+    margin-left: 20px;
     }
  </style>
 @endsection
@@ -15,7 +15,7 @@
 @section('content')
 
 <a href="/"><button type="button" class="btn btn-primary">Back to Homepage</button></a>
-
+<a href="/customer/queue"><button type="button" class="btn btn-primary">My order queue</button></a>
 <h4>You are logged in as {{$user->name}} <button type="button" class="btn btn-danger sm" onclick="location.href='/logout';">Logout</button></h4>
 <form method="post" action="/customer/order">
 @for ($i = 1; $i <= count($foods); $i++)
