@@ -8,6 +8,7 @@ use App\Models\Promotion;
 use App\Models\Order;
 use App\Models\Orderfoodlist;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 class CustomerController extends Controller
 {
     private function get_user($key)
@@ -127,7 +128,30 @@ class CustomerController extends Controller
 
     public function view_order(Request $request)
     {
+      if(!$request->session()->has('token'))
+      {
+        return redirect('/login');
+      }
+      $user = $this->get_user($request->session()->get('token'));
+      if(!$user)
+      {
+        return redirect('/logout');
+      }
+      $customerOrders = DB::table('orderfoodlists')
+                          ->join('orders','order_id','=','orders.id')
+                          ->join('foods','food_id','=','foods.id')
+                          ->where('orders.customer_id','=',$user->id)
+                          ->where('orderfoodlists.isPaid','=',0)
+                          ->select('orderfoodlists.*','foods.name as food_name','orders.order_time','orders.delivery_flag')
+                          ->get();
 
+
+      echo $customerOrders;
+
+      return view('customer.queue', [
+          'title' => 'Queue',
+          'orders' => $customerOrders
+      ]);
     }
 
     public function register()
