@@ -80,6 +80,14 @@ class CustomerController extends Controller
        {
          return redirect('/logout');
        }
+       foreach ($foods as $food)
+       {
+         if($food->havePromotion)
+         {
+
+           $food->price = (string)($food->price ) ." โปรโมชั่น ".(string)( $food->price - $food->havePromotion->discount_value);
+         }
+       }
        return view('customer.menu', [
                'title' => 'Menu',
                'foods' => $foods,
@@ -251,7 +259,15 @@ class CustomerController extends Controller
           'customers' => $customers
         ]);
     }
-
+    // private function dateIsBetween($from, $to, $date="now") {
+    //     $date = new \DateTime($date);
+    //     $from= new \DateTime($from);
+    //     $to = new \DateTime($to);
+    //     if ($date >= $from && $date <= $to) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
     public function guest_view_menu(Request $request)
     {
       if($request->session()->has('token'))
@@ -259,6 +275,14 @@ class CustomerController extends Controller
         return redirect('/customer/menu');
       }
         $foods = Food::all();
+        foreach ($foods as $food)
+        {
+          if($food->havePromotion)
+          {
+
+            $food->price = (string)($food->price ) ." โปรโมชั่น ".(string)( $food->price - $food->havePromotion->discount_value);
+          }
+        }
         return view('customer.guest_menu', [
           'title' => 'Menu',
           'foods' => $foods

@@ -15,35 +15,35 @@ class FoodsTableSeeder extends Seeder
       DB::table('foods')->insert([
         'name' => 'Fried Chicken',
         'price' => 30,
-        'picture' => '/',
+        'picture' => '/foodPic/fired_chicken.jpg',
         'type' => 'meal',
       ]);
 
       DB::table('foods')->insert([
         'name' => 'Tom Yum Kung',
         'price' => 35,
-        'picture' => '/',
+        'picture' => '/foodPic/fired_chicken.jpg',
         'type' => 'meal',
       ]);
 
       DB::table('foods')->insert([
         'name' => 'French Fries',
         'price' => 30,
-        'picture' => '/',
+        'picture' => '/foodPic/fired_chicken.jpg',
         'type' => 'snack',
       ]);
 
       DB::table('foods')->insert([
         'name' => 'Coke',
         'price' => 20,
-        'picture' => '/',
+        'picture' => '/foodPic/fired_chicken.jpg',
         'type' => 'drink',
       ]);
 
       DB::table('foods')->insert([
         'name' => 'Ice Cream',
         'price' => 20,
-        'picture' => '/',
+        'picture' => '/foodPic/fired_chicken.jpg',
         'type' => 'dessert',
       ]);
 

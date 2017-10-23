@@ -28,7 +28,7 @@
     <div class="card">
 
       <label for="img{{$i}}">
-      <img class="card-img-top" src="../foodPic/fired_chicken.jpg" alt="Card image cap">
+      <img class="card-img-top" src="..{{$foods[$i-1]->picture}}" alt="Card image cap">
 
 
 
