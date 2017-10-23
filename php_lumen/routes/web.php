@@ -25,6 +25,7 @@ $router->post('/customer/queue', 'CustomerController@view_menu');
 $router->get('/customer/queue', 'CustomerController@view_order');
 $router->post('/customer/queue/delete', 'CustomerController@delete_food_queue');
 $router->post('/customer/order', 'CustomerController@place_order');
+$router->get('/customer/queue', 'CustomerController@view_order');
 
 
 //crud in class

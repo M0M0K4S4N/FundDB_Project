@@ -128,11 +128,11 @@ class CustomerController extends Controller
 
     private function get_waiting_queue($first_id)
     {
-      $list  = Orderfoodlist::all();
+      $list  = Orderfoodlist::where('cooking_flag', 0);
       $count = 0;
       foreach ($list as $elem)
       {
-        if($elem->id == $first_id)
+        if($elem->id >= $first_id)
         {
           break;
         }
@@ -159,6 +159,7 @@ class CustomerController extends Controller
                           ->where('orderfoodlists.isPaid','=',0)
                           ->select('orderfoodlists.*','foods.name as food_name','orders.order_time','orders.delivery_flag')
                           ->get();
+
 
       $waiting = $this->get_waiting_queue($customerOrders[0]->id);
       //echo $customerOrders;
