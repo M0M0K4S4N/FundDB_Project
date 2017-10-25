@@ -136,7 +136,7 @@ class CustomerController extends Controller
 
     private function get_waiting_queue($first_id)
     {
-      $list  = Orderfoodlist::where('cooking_flag', 0);
+      $list  = Orderfoodlist::where('cooking_flag', 0)->get();
       $count = 0;
       foreach ($list as $elem)
       {
