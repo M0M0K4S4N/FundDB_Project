@@ -205,6 +205,37 @@ class CustomerController extends Controller
       return redirect('/customer/queue');
     }
 
+    public function view_order_result(Request $request)
+    {
+      if(!$request->session()->has('token'))
+      {
+        return redirect('/login');
+      }
+      $user = $this->get_user($request->session()->get('token'));
+      if(!$user)
+      {
+        return redirect('/logout');
+      }
+      $foods = Orderfoodlist::where('isPaid', 0)->get();
+      $promotions = Promotion::all();
+      $temp = $foods;
+      for ($i=0; $i < count($temp); $i++) {
+
+        if($temp[$i]->inOrder->customer_id != $user->id)
+        {
+          $foods->forget($i);
+        }
+      }
+
+      return view('customer.result', [
+          'title' => 'Result',
+          'foods' => $foods,
+          'promotions' => $promotions,
+          'user' => $user
+      ]);
+
+    }
+
     public function register()
     {
 

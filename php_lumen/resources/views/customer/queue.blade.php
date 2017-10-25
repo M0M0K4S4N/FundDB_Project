@@ -60,7 +60,7 @@
 
 </tbody>
 </table>
-<button type="button" class="btn btn-info" onclick="location.href='cus_payment.html';">ยืนยันจ่ายเงิน</button>
+<button type="button" class="btn btn-info" onclick="location.href='/customer/result';">ยืนยันจ่ายเงิน</button>
 
 
 @endsection
