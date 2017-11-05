@@ -38,3 +38,11 @@ $router->get('/chef-queue', 'ChefController@menu_list');
 $router->post('/chef-queue/cooking', 'ChefController@update_order_status_cooking');
 $router->post('/chef-queue/ready', 'ChefController@update_order_status_ready');
 $router->post('/chef-queue/cancel', 'ChefController@cancel_order');
+
+//for manager manage food list
+$router->get('/manager-menu', 'ManagerController@food_view');
+$router->get('/manager-menu/food-add', 'ManagerController@food_add');
+$router->post('/manager-menu/food-add', 'ManagerController@store_food_add_data');
+
+$router->get('/manager-worker', 'ManagerController@worker_view');
+
