@@ -33,7 +33,10 @@ $router->get('/customer/result', 'CustomerController@view_order_result');
 $router->get('/crud/register/view', 'CustomerController@view_register_data');
 $router->post('/crud/register/view/delete', 'CustomerController@delete_register_data');
 $router->get('/crud/order/view', 'CrudController@show_order_list');
-
+$router->post('/crud/order/delete', 'CrudController@delete_order_list');
+$router->get('/crud/order/edit/{order_id}', 'CrudController@show_order_food_list');
+$router->post('/crud/order/edit/food/{fList_id}', 'CrudController@edit_order_food_list');
+$router->post('/crud/order/edit/food/{fList_id}/delete', 'CrudController@delete_order_food_list');
 //for chef
 $router->get('/chef-queue', 'ChefController@menu_list');
 $router->post('/chef-queue/cooking', 'ChefController@update_order_status_cooking');

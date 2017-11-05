@@ -3,7 +3,7 @@
 @section('content')
 
 <button type="button" class="btn btn-primary" onclick="location.href='/';">Back to Homepage</button>
-
+<button type="button" class="btn btn-primary" onclick="location.href='/customer/menu';">สั่งอาหาร</button>
 <table class="table table-striped">
 <thead>
 <tr>
@@ -24,8 +24,13 @@
 <td>{{$order->delivery_flag}}</td>
 <td>{{$order->detail}}</td>
 <td>{{$order->order_time}}</td>
-<td><button type="button" class="btn btn-primary" onclick="location.href='/crud/order/edit';">แก้ไข</button></td>
-<td><button type="button" class="btn btn-danger" onclick="location.href='/';">ลบ</button></td>
+<td><button type="button" class="btn btn-primary" onclick="location.href='/crud/order/edit/{{$order->id}}';">แก้ไข</button></td>
+<td>
+  <form method="post" action="/crud/order/delete">
+  <input type="hidden" name="order_id" value="{{$order->id}}">
+  <button type="submit" class="btn btn-danger">ลบ</button>
+  </form>
+</td>
 </tr>
 @endforeach
 
