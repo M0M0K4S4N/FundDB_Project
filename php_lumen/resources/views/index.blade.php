@@ -6,7 +6,7 @@
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/register';">สมัครสมาชิก</button>
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/menu';">ดูเมนู</button>
     <button type="button" class="btn btn-danger btn-lg btn-block" onclick="location.href='/promotions';">ดูโปรโมชั่น</button>
-    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='chef-queue.html';">ดูคิว สำหรับเชฟ</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/chef-queue';">ดูคิว สำหรับเชฟ</button>
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='manager-menu.html';">ดู เพิ่ม ลด เมนู สำหรับผู้จัดการ</button>
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='manager-promotion.html';">ดู เพิ่ม ลด โปรโมชั่น สำหรับผู้จัดการ</button>
     <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='manager-worker.html';">ดู เพิ่ม ลด พนักงาน</button>
