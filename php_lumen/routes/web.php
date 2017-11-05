@@ -35,3 +35,6 @@ $router->post('/crud/register/view/delete', 'CustomerController@delete_register_
 
 //for chef
 $router->get('/chef-queue', 'ChefController@menu_list');
+$router->post('/chef-queue/cooking', 'ChefController@update_order_status_cooking');
+$router->post('/chef-queue/ready', 'ChefController@update_order_status_ready');
+$router->post('/chef-queue/cancel', 'ChefController@cancel_order');
