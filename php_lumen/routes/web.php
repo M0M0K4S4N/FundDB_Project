@@ -54,6 +54,8 @@ $router->post('/chef-queue/cancel', 'ChefController@cancel_order');
 $router->get('/manager-menu', 'ManagerController@food_view');
 $router->get('/manager-menu/food-add', 'ManagerController@food_add');
 $router->post('/manager-menu/food-add', 'ManagerController@store_food_add_data');
+$router->post('/manager-menu/food-delete', 'ManagerController@food_delete');
+
 
 $router->get('/manager-worker', 'ManagerController@worker_view');
 $router->get('/manager-worker/worker-add', 'ManagerController@worker_add');
