@@ -54,8 +54,9 @@
 
 </tr>
 </tbody>
-<a href="/manager-worker/worker-add"><button type="button" class="btn btn-primary">Add Worker</button></a>
-
+<form method="post" action="/manager-promotion/promotion-add">
+	<button type="submit" class="btn btn-primary">Add Promotion</button>
+</form>
 </table>
 
 

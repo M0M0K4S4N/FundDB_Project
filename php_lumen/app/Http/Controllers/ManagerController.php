@@ -177,6 +177,35 @@ class ManagerController extends Controller
 		]);
 	}
 
+	public function promotion_add()
+    {	
+        return view('manager.promotion_add', [
+            'title' => 'Manager: Adding Promotion',
+		]);
+		
+    }
+
+	public function store_promotion_add(Request $request)
+    {
+		$name = $request->name;
+		$discount_for = $request->discount_for;
+		$discount_value = $request->discount_value;
+		$start_date = $request->start_date;
+		$end_date = $request->end_date;
+
+		$promotion = new Promotion;
+		$promotion->name = $name;
+		$promotion->discount_for = $discount_for;
+		$promotion->discount_value = $discount_value;
+		$promotion->start_date = $start_date;
+		$promotion->end_date = $end_date;
+		$promotion->save();
+
+		
+
+        return redirect('/manager-promotion');
+    }
+
 	public function promotion_edit(Request $request)
     {	
 		$id = $request->input('id');

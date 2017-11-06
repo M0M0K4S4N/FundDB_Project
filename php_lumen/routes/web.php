@@ -60,12 +60,13 @@ $router->post('/manager-menu/food-delete', 'ManagerController@food_delete');
 $router->get('/manager-worker', 'ManagerController@worker_view');
 $router->get('/manager-worker/worker-add', 'ManagerController@worker_add');
 $router->post('/manager-worker/worker-add', 'ManagerController@store_worker_add');
-
 $router->post('/manager-worker/worker-edit', 'ManagerController@worker_edit');
 $router->post('/manager-worker/worker-edit-store', 'ManagerController@store_worker_edit');
 $router->post('/manager-worker/worker-delete', 'ManagerController@worker_delete');
 
 $router->get('/manager-promotion', 'ManagerController@promotion_view');
+$router->post('/manager-promotion/promotion-add', 'ManagerController@promotion_add');
+$router->post('/manager-promotion/promotion-add-store', 'ManagerController@store_promotion_add');
 $router->post('/manager-promotion/promotion-edit', 'ManagerController@promotion_edit');
 $router->post('/manager-promotion/promotion-edit-store', 'ManagerController@store_promotion_edit');
 $router->post('/manager-promotion/promotion-delete', 'ManagerController@promotion_delete');
