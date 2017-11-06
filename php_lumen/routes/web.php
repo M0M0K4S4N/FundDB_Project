@@ -35,3 +35,15 @@ $router->post('/crud/register/view/delete', 'CustomerController@delete_register_
 
 //for chef
 $router->get('/chef-queue', 'ChefController@menu_list');
+
+$router->get('/cashier', 'CashierController@check_bill');
+$router->get('/cashier/paid', 'CashierController@edit_paid');
+$router->get('/cashier/{id}', 'CashierController@show_order_list');
+
+$router->get('/delivery', 'ServerController@delivery');
+$router->get('/delivery/update', 'ServerController@');
+$router->get('/waiter', 'ServerController@waiter');
+
+
+$router->get('/status', 'ServerController@status');
+

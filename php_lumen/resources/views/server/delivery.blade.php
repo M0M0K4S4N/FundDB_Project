@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <title>Restaurant</title>
+  <body>
+      <center><p class="h1"><strong>Deliverer</strong></p></center>
+      <div class="container">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-active">
+              <th>Status</th>
+              <th>Adress</th>
+              <th>Telephon Number</th>
+              <th>Food's detail</th>
+              <th>cost</th>
+              <th>ยืนยันการจัดส่ง</th>
+              <th>ยืนยันการจ่ายเงิน</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+            @foreach ($orders as $order)
+      @if ($order == NULL)
+        <p>NOT FOUND</p>
+        @break
+      @endif
+
+        <tr>
+              <td>รอจัดส่ง</td>
+              <td><a href="map.html">ที่อยู่1</a></td>
+              <td>0812345678</td>
+              <td>{{$order->food->name}}</td>
+              <td>100</td>
+              <td><a href="/delivery"><button type="button" class="btn btn-danger">confirm</button></a></td>
+              <td><a href="/delivery"><button type="button" class="btn btn-success">confirm</button></a></td>
+            </tr>
+    @endforeach
+            
+          </tbody>
+        </table>
+      </div>
+  </body>
+</html>
