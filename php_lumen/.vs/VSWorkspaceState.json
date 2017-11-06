@@ -4,11 +4,10 @@
     "\\app",
     "\\app\\Http",
     "\\app\\Http\\Controllers",
-    "\\app\\Models",
     "\\resources",
     "\\resources\\views",
     "\\resources\\views\\chef",
-    "\\resources\\views\\customer",
+    "\\resources\\views\\manager",
     "\\routes"
   ],
   "SelectedNode": "\\app\\Http\\Controllers\\ManagerController.php",

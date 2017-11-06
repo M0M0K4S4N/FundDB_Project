@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\Orderfoodlist;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\UploadedFile;
 
 class ManagerController extends Controller
 {
@@ -44,8 +45,26 @@ class ManagerController extends Controller
 		/*
 		picture uploading??
 		*/
-
-        return redirect('/manager-menu');
+		/*
+		if ($request->hasFile('picture')) {
+			$picture = $request->file('picture');
+			$name = time().'.'.$picture->getClientOriginalExtension();
+			$destinationPath = public_path('/img');
+			$picture->move($destinationPath, $name);
+			$type = $request->type;
+			$price = $request->price;
+			$this->save();
+			echo "123123";
+		}
+		*/
+		if($request->hasfile('picture'))
+		{
+			echo "yeak";
+		}else{
+			echo "no";
+		}
+		
+        //return redirect('/manager-menu');
 	}
 
 	public function worker_view()
