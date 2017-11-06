@@ -67,6 +67,16 @@ class ManagerController extends Controller
         //return redirect('/manager-menu');
 	}
 
+	public function food_delete(Request $request)
+	{
+		$id = $request->id;
+		$food = Food::findOrFail($id);
+		$food->delete();
+	
+		return redirect('/manager-menu');
+
+	}
+
 	public function worker_view()
     {
 		$workers = Employee::all();

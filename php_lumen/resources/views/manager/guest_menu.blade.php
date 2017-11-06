@@ -16,7 +16,10 @@
     <div class="card-footer">
       <big class="text-muted">ราคา {{$foods[$i-1]->price}} บาท</big>
     </div>
-	  <button type="button" class="btn btn-danger">Delete</button>
+	<form method="post" action="/manager-menu/food-delete">
+		<input type="hidden" name="id" value="{{ $foods[$i-1]->id}}">
+		<td><button type="submit" class="btn btn-danger" value="delete">Delete</button></td>
+	</form>
 
   </div>
 
