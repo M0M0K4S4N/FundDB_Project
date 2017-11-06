@@ -57,4 +57,142 @@ class ManagerController extends Controller
 			'workers' => $workers,
 		]);
     }
+
+	public function worker_add()
+    {	
+        return view('manager.worker_add', [
+            'title' => 'Manager: Adding Worker',
+		]);
+		
+    }
+
+	public function store_worker_add(Request $request)
+    {
+        $name = $request->input('name');
+        $job = $request->input('job');
+  
+		$salary = $request->input('salary');
+		//INSERT
+        $worker = new Employee;
+        $worker->name =$name;
+        $worker->job = $job;
+        
+		if ($request->input('supervisor')) {
+			$supervisor = $request->input('supervisor');
+			$worker->supervisor =$supervisor;
+        }
+
+		$worker->salary =$salary;
+        $worker->save();
+        //end INSERT
+
+        return redirect('/manager-worker');
+    }
+
+	public function worker_edit(Request $request)
+    {	
+		$id = $request->input('id');
+		
+		$worker = Employee::findOrFail($id);
+
+        return view('manager.worker_edit', [
+            'title' => 'Manager: Editing Worker',
+			'worker' => $worker,
+		]);
+		
+    }
+
+	public function store_worker_edit(Request $request)
+	{
+	
+		$id = $request->id;
+		$name = $request->name;
+		$job = $request->job;
+		if ($request->supervisor) {
+			$supervisor = $request->supervisor;	
+		}else {
+			$supervisor = null;
+		}
+		$supervisor = $request->supervisor;
+		$salary = $request->salary;
+		
+		$worker = Employee::findOrFail($id);
+		
+		$worker->name = $name;
+		$worker->job = $job;
+		$worker->supervisor = $supervisor;
+		$worker->salary = $salary;
+		$worker->save();
+		
+		return redirect('/manager-worker');
+		
+	}
+
+	public function worker_delete(Request $request)
+	{
+		$id = $request->id;
+		$worker = Employee::findOrFail($id);
+		$worker->delete();
+	
+		return redirect('/manager-worker');
+
+	}
+
+	public function promotion_view()
+	{
+		$promotions = Promotion::all();
+	
+        return view('manager.promotion_list', [
+            'title' => 'Manager : Promotion View',
+			'promotions' => $promotions,
+		]);
+	}
+
+	public function promotion_edit(Request $request)
+    {	
+		$id = $request->input('id');
+		
+		$promotion = Promotion::findOrFail($id);
+
+        return view('manager.promotion_edit', [
+            'title' => 'Manager: Editing Promotion',
+			'promotion' => $promotion,
+		]);
+		
+    }
+
+	public function store_promotion_edit(Request $request)
+	{
+	
+		$id = $request->id;
+		$name = $request->name;
+		$discount_for = $request->discount_for;
+		$discount_value = $request->discount_value;
+		$start_date = $request->start_date;
+		$end_date = $request->end_date;
+		
+		
+		$promotion = Promotion::findOrFail($id);
+		
+		$promotion->name = $name;
+		$promotion->discount_for = $discount_for;
+		$promotion->discount_value = $discount_value;
+		$promotion->start_date = $start_date;
+		$promotion->end_date = $end_date;
+
+		$promotion->save();
+		
+		return redirect('/manager-promotion');
+		
+	}
+
+	public function promotion_delete(Request $request)
+	{
+		$id = $request->id;
+		$promotion = Promotion::findOrFail($id);
+		$promotion->delete();
+	
+		return redirect('/manager-Promotion');
+
+	}
 }

@@ -12,36 +12,40 @@
 <tr>
 <th>ID</th>
 <th>Name</th>
-<th>Job</th>
-<th>Supervisor</th>
-<th>Salary</th>
+<th>FoodID</th>
+<th>Discount Value</th>
+<th>Start</th>
+<th>End</th>
 <th>Edit</th>
 <th>Delete</th>
 
 </tr>
 </thead>
 <tbody>
-@foreach($workers as $worker)
+@foreach($promotions as $promotion)
 
 
   <tr>
-  <th scope="row">{{ $worker->id}}</th>
+  <th scope="row">{{ $promotion->id}}</th>
 
-  <td>{{$worker->name}}</td>
+  <td>{{$promotion->name}}</td>
 
-  <td>{{$worker->job}}</td>
+  <td>{{$promotion->discount_for}}</td>
 
-  <td>{{$worker->supervisor}}</td>
+  <td>{{$promotion->discount_value}}</td>
 
-  <td>{{$worker->salary}}</td>
+  <td>{{$promotion->start_date}}</td>
+
+  <td>{{$promotion->end_date}}</td>
+
   
-<form method="post" action="/manager-worker/worker-edit">
-  <input type="hidden" name="id" value="{{ $worker->id}}">
+<form method="post" action="/manager-promotion/promotion-edit">
+  <input type="hidden" name="id" value="{{ $promotion->id}}">
 	<td><button type="submit" class="btn btn-primary" value="edit">Edit</button></td>
 </form>
 
-<form method="post" action="/manager-worker/worker-delete">
-  <input type="hidden" name="id" value="{{ $worker->id}}">
+<form method="post" action="/manager-promotion/promotion-delete">
+  <input type="hidden" name="id" value="{{ $promotion->id}}">
 	<td><button type="submit" class="btn btn-danger" value="delete">Delete</button></td>
 </form>
   </tr>
