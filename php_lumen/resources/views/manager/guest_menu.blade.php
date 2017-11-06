@@ -16,10 +16,7 @@
     <div class="card-footer">
       <big class="text-muted">ราคา {{$foods[$i-1]->price}} บาท</big>
     </div>
-	  <button type="button" class="btn btn-danger">Delete</button>
-
   </div>
-
     @if ($i % 3 == 0)
   </div> <br>
     @endif
@@ -27,5 +24,3 @@
 
 
 @endsection
-
-	  
