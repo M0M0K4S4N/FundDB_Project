@@ -167,8 +167,10 @@ class CustomerController extends Controller
                           ->where('orderfoodlists.isPaid','=',0)
                           ->select('orderfoodlists.*','foods.name as food_name','orders.order_time','orders.delivery_flag')
                           ->get();
-
-
+      if(count($customerOrders) == 0){
+        return redirect('/customer/menu');
+      }
+      //echo $customerOrders;
       $waiting = $this->get_waiting_queue($customerOrders[0]->id);
       //echo $customerOrders;
 
@@ -271,6 +273,15 @@ class CustomerController extends Controller
           'title' => 'View',
           'customers' => $customers
         ]);
+    }
+    public function edit_register_data(Request $request)
+    {
+        $customer = Customer::find($request->get('id'));
+        $customer->name = $request->get('name');
+        $customer->address = $request->get('address');
+        $customer->save();
+        //echo $customers;
+        return redirect('/crud/register/view');
     }
 
     public function delete_register_data(Request $request)

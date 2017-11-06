@@ -14,19 +14,15 @@
 <th>List</th>
 <th>Qty</th>
 <th>Time</th>
-<th>Confirm</th>
 <th>In Progress</th>
 <th>Ready to serve</th>
 
-<th>Cancel</th>
 </tr>
 </thead>
 <tbody>
 @foreach($orders as $order)
-<form method="post" action="/chef_update_orderslist">
-  <input type="hidden" name="order_id" value="{{ $order->order_id}}">
-  <input type="hidden" name="food_id" value="{{ $order->food_id}}">
-  <input type="hidden" name="qty" value="{{ $order->Qty}}">
+
+
   <tr>
   <th scope="row">{{ $order->order_id}}</th>
 
@@ -35,19 +31,40 @@
   <td>{{$order->Qty}}</td>
 
   <td>{{$order->order_time}}</td>
-  <td><input type="checkbox" name="confirm" value="confirm"></td>
-  <td><input type="checkbox" name="inprogress" value="inprogress" ></td>
-  <td><input type="checkbox" name="readytoserve" value="readytoserve"></td>
-  <td>
-    <button type="submit" class="btn btn-danger" value="cancel">Cancel</button></td>
+
+<form method="post" action="/chef-queue/cooking">
+  <input type="hidden" name="order_id" value="{{ $order->order_id}}">
+  <input type="hidden" name="food_id" value="{{ $order->food_id}}">
+  @if ($order->cooking_flag == 0)
+	<td><button type="submit" class="btn btn-info" value="cooking"></td>
+  @else 
+	<td><button type="button" class="btn btn-success" ></td>
+  @endif
+</form>
+
+	
+<form method="post" action="/chef-queue/ready">
+  <input type="hidden" name="order_id" value="{{ $order->order_id}}">
+  <input type="hidden" name="food_id" value="{{ $order->food_id}}">
+  @if ($order->serve_flag == 0)
+	<td><button type="submit" class="btn btn-info" value="ready"></td>
+  @else 
+	<td><button type="button" class="btn btn-success" ></td>
+  @endif
+</form>
+
+<form method="post" action="/chef-queue/cancel">
+  <input type="hidden" name="order_id" value="{{ $order->order_id}}">
+  <input type="hidden" name="food_id" value="{{ $order->food_id}}">
+	<td><button type="submit" class="btn btn-danger" value="cancel">Cancel</button></td>
   </tr>
+</form>
 
 @endforeach
 
 </tr>
 </tbody>
 </table>
-<button type="submit" class="btn btn-primary" value="update">Update</button>
-</form>
+
 
 @endsection

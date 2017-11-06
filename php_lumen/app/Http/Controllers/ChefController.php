@@ -24,4 +24,52 @@ class ChefController extends Controller
 			'orders' => $orders,
 		]);
     }
+
+	public function update_order_status_cooking(Request $request)
+	{
+		
+		$order_id = $request->order_id;
+		$food_id = $request->food_id;
+
+		$order = DB::table('Orderfoodlists')
+					->where('Orderfoodlists.order_id', $order_id)
+					->where('Orderfoodlists.food_id', $food_id)
+					->update(['Orderfoodlists.cooking_flag' => 1]);
+		
+
+		return redirect('/chef-queue');
+
+	}
+	
+	public function update_order_status_ready(Request $request)
+	{
+		
+		$order_id = $request->order_id;
+		$food_id = $request->food_id;
+
+		$order = DB::table('Orderfoodlists')
+					->where('Orderfoodlists.order_id', $order_id)
+					->where('Orderfoodlists.food_id', $food_id)
+					->update(['Orderfoodlists.serve_flag' => 1]);
+		
+
+		return redirect('/chef-queue');
+
+	}
+
+	public function cancel_order(Request $request)
+	{
+		
+		$order_id = $request->order_id;
+		$food_id = $request->food_id;
+
+		$order = DB::table('Orderfoodlists')
+					->where('Orderfoodlists.order_id', $order_id)
+					->where('Orderfoodlists.food_id', $food_id)
+					->delete();
+		
+
+		return redirect('/chef-queue');
+
+	}
 }
