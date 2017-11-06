@@ -10,6 +10,7 @@
       <th>Name</th>
       <th>Address</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -18,16 +19,22 @@
         <p>NOT FOUND</p>
         @break
       @endif
-        <tr>
-        <th scope="row">{{ $customer->id }}</th>
-        <td>{{ $customer->name }}</td>
+        <form method="post" action="/crud/register/edit">
+          <input type="hidden"  name="id" value={{ $customer->id }}>
+          <tr>
+          <th scope="row">{{ $customer->id }}</th>
+          <td><input type="text" name="name" value="{{ $customer->name }}"></td>
 
-        <td>{{ $customer->address }}</td>
+          <td><input type="text" name="address" value="{{ $customer->address }}"></td>
+          <td>
+            <button type="submit" class="btn btn-primary btn-sm">แก้ไข</button>
+          </td>
+        </form>
         <td>
           <form method="post" action="/register/view/delete">
             <input type="hidden"  name="id" value={{ $customer->id }}>
 
-          <button type="submit" class="btn btn-primary btn-sm" onclick="location.href='/register/delete';">Delete</button></td>
+          <button type="submit" class="btn btn-primary btn-sm" >Delete</button></td>
         </form>
       </tr>
     @endforeach
