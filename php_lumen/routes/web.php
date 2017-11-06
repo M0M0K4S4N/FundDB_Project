@@ -37,6 +37,7 @@ $router->get('/crud', function(){
     ]);
 });
 $router->get('/crud/register/view', 'CustomerController@view_register_data');
+$router->post('/crud/register/edit', 'CustomerController@edit_register_data');
 $router->post('/crud/register/view/delete', 'CustomerController@delete_register_data');
 $router->get('/crud/order/view', 'CrudController@show_order_list');
 $router->post('/crud/order/delete', 'CrudController@delete_order_list');

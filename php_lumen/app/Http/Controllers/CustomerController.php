@@ -272,6 +272,15 @@ class CustomerController extends Controller
           'customers' => $customers
         ]);
     }
+    public function edit_register_data(Request $request)
+    {
+        $customer = Customer::find($request->get('id'));
+        $customer->name = $request->get('name');
+        $customer->address = $request->get('address');
+        $customer->save();
+        //echo $customers;
+        return redirect('/crud/register/view');
+    }
 
     public function delete_register_data(Request $request)
     {
