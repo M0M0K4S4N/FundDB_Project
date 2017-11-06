@@ -167,8 +167,10 @@ class CustomerController extends Controller
                           ->where('orderfoodlists.isPaid','=',0)
                           ->select('orderfoodlists.*','foods.name as food_name','orders.order_time','orders.delivery_flag')
                           ->get();
-
-
+      if(count($customerOrders) == 0){
+        return redirect('/customer/menu');
+      }
+      //echo $customerOrders;
       $waiting = $this->get_waiting_queue($customerOrders[0]->id);
       //echo $customerOrders;
 
