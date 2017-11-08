@@ -13,6 +13,7 @@ use App\Models\Orderfoodlist;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 
 class ManagerController extends Controller
 {
@@ -47,7 +48,17 @@ class ManagerController extends Controller
     $food->type = $request->get('type');
     $food->price = $request->get('price');
     //$food->picture = $request->get('picture');
-    $food->save();
+    if ($request->hasFile('picture')) {
+      $picture = $request->file('picture');
+      $picMD5 = md5_file($picture);
+      $fileName = $picMD5 . '.' . $picture->getClientOriginalExtension();
+      //$picture->move('/public');
+      $food->picture = '/foodPic/'.$fileName;
+      $request->file('picture')->move('foodPic',$fileName);
+      $food->save();
+    }
+
+    //$food->save();
     return redirect('/manager-menu');
 		/*
 		picture uploading??
@@ -81,7 +92,7 @@ class ManagerController extends Controller
 		$id = $request->id;
 		$food = Food::findOrFail($id);
 		$food->delete();
-	
+
 		return redirect('/manager-menu');
 
 	}
@@ -187,11 +198,11 @@ class ManagerController extends Controller
 	}
 
 	public function promotion_add()
-    {	
+    {
         return view('manager.promotion_add', [
             'title' => 'Manager: Adding Promotion',
 		]);
-		
+
     }
 
 	public function store_promotion_add(Request $request)
@@ -210,7 +221,7 @@ class ManagerController extends Controller
 		$promotion->end_date = $end_date;
 		$promotion->save();
 
-		
+
 
         return redirect('/manager-promotion');
     }
