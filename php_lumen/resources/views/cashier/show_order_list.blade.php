@@ -15,7 +15,7 @@
         <table class="table table-bordered">
           <thead>
             <tr class="table-active">
-              <th>โต๊ะ</th>
+              <th>Order</th>
               <th>รายการอาหารที่สั่ง</th>
               <th>ราคา</th>
           
@@ -30,9 +30,9 @@
       @endif
       
         <tr>
-              <td>{{$order->id}}</td>
-              <td>ราคา</td>
-              <th scope="row">500</th>
+              <td>{{$order->order_id}}</td>
+              <td>{{$order->name}}</td>
+              <th scope="row">{{$order->price}}</th>
         </tr>
       @endforeach
             <!-- <tr>

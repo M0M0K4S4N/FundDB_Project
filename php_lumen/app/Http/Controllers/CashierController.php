@@ -14,17 +14,27 @@ class CashierController extends Controller
 {
     public function check_bill()
     {
-		$orders = Order::All();
-
+		//$orders = Orderfoodlist::All();
+        $orders = DB::table('Orderfoodlists')
+                    ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+                    ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+                    ->groupBy('order_id')
+                  //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
+                    ->get();
         return view('cashier.cashier', [
             'title' => 'Cashier',
-			'orders' => $orders,
-		]);
+            'orders' => $orders,
+        ]);
     }
 
     public function show_order_list($table)
     {
-    	$orders = Orderfoodlist::findOrFail($table);
+    	      $orders = DB::table('Orderfoodlists')
+                    ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+                    ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+                    ->where('order_id' , '=', $table)
+                  //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
+                    ->get();
         return view('cashier.show_order_list', [
             'title' => 'Cashier',
 			'orders' => $orders,

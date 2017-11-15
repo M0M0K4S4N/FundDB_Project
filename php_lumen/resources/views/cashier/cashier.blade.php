@@ -15,7 +15,7 @@
         <table class="table table-bordered">
           <thead>
             <tr class="table-active">
-              <th>โต๊ะ</th>
+              <th>order</th>
               <th>ข้อมูลรายการอาหาร</th>
               <th>รวมยอดเงิน</th>
               <th>ยืนยันการจ่ายเงิน</th>
@@ -30,9 +30,12 @@
       @endif
 
         <tr>
-              <td><a href="/cashier/{{$order->id}}">{{$order->id}}</a></td>
-              <td>{{$order->detail}}</td>
-              <th scope="row">500</th>
+              <td>{{$order->order_id}}</td>
+              <td>
+<a href="/cashier/{{$order->id}}">ดูรายการอาหาร
+    </a>
+              </td>
+              <th scope="row"></th>
               <td>
                   <form method="post" action="/register/view/delete">
             <input type="hidden"  name="id" value={{ $order->id }}>
