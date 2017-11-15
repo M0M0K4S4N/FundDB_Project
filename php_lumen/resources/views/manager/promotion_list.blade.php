@@ -1,6 +1,4 @@
-@section('header')
-<meta http-equiv="Refresh" content="5">
-@endsection
+
 
 @extends('layouts.app')
 
@@ -38,7 +36,7 @@
 
   <td>{{$promotion->end_date}}</td>
 
-  
+
 <form method="post" action="/manager-promotion/promotion-edit">
   <input type="hidden" name="id" value="{{ $promotion->id}}">
 	<td><button type="submit" class="btn btn-primary" value="edit">Edit</button></td>
