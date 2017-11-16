@@ -22,12 +22,12 @@
   <button type="reset" class="btn pull-right">Cancel</button>
 </form>
 
-<fieldset class=”gllpLatlonPicker”>
-<input type=”text” class=”gllpSearchField”>
-<input type=”button” class=”gllpSearchButton” value=”search”>
+<fieldset class="gllpLatlonPicker">
+<input type="text" class="gllpSearchField">
+<input type="button" class="gllpSearchButton" value="search">
 <br/>
-<div class=”gllpMap”>Google Maps</div>
-lat/lon: <input type=”text” class=”gllpLatitude” value=”20″/> / <input type=”text” class=”gllpLongitude” value=”20″/>, zoom: <input type=”text” class=”gllpZoom” value=”3″/> <input type=”button” class=”gllpUpdateButton” value=”update map”>
+<div class="gllpMap">Google Maps</div>
+lat/lon: <input type="text" class="gllpLatitude" value="20"/> / <input type="text" class="gllpLongitude" value="20"/>, zoom: <input type="text" class="gllpZoom" value="3"/> <input type="button" class="gllpUpdateButton" value="update map">
 </fieldset>
 
 @endsection
