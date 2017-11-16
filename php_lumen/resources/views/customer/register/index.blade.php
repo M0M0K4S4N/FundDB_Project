@@ -18,7 +18,10 @@
   <input type="button" class="gllpSearchButton" value="search">
   <br/>
   <div class="gllpMap">Google Maps</div>
-  <input type="hidden" class="gllpLatitude" value="20"/> <input type="hidden" class="gllpLongitude" value="20"/> <input type="hidden" class="gllpZoom" value="3"/> <input type="button" class="gllpUpdateButton" value="update map">
+  <input type="hidden" class="gllpLatitude" name="lat" value="20"/>
+  <input type="hidden" class="gllpLongitude" name="long" value="20"/>
+   <input type="hidden" class="gllpZoom" value="3"/>
+   <input type="button" class="gllpUpdateButton" value="update map">
   </fieldset>
 </div>
  <div class="form-group">

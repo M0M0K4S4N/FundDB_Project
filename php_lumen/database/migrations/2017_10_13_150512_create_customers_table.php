@@ -19,6 +19,8 @@ class CreateCustomersTable extends Migration
             $table->string('name');
             $table->string('password');
             $table->string('address');
+            $table->double('lat');
+            $table->double('long');
             $table->string('api_token')->nullable();
         });
     }

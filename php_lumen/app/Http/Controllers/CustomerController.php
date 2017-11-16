@@ -250,11 +250,15 @@ class CustomerController extends Controller
         $name = $request->input('name');
         $address = $request->input('address');
         $password = crypt($request->input('password'), env('USER_PASSWORD_SALT'));
+        $lat = $request->input('lat');
+        $long = $request->input('long');
         //INSERT
         $customer = new Customer;
         $customer->name =$name;
         $customer->address = $address;
         $customer->password = $password;
+        $customer->lat = $lat;
+        $customer->long = $long;
         $customer->api_token = str_random(30);
         $customer->save();
         //end INSERT
