@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('header')
+
+@endsection
 
 @section('content')
 <form method="post" action="/register">
@@ -18,5 +21,22 @@
 <button type="submit" class="btn btn-primary">Register</button>
   <button type="reset" class="btn pull-right">Cancel</button>
 </form>
+
+<fieldset class=”gllpLatlonPicker”>
+<input type=”text” class=”gllpSearchField”>
+<input type=”button” class=”gllpSearchButton” value=”search”>
+<br/>
+<div class=”gllpMap”>Google Maps</div>
+lat/lon: <input type=”text” class=”gllpLatitude” value=”20″/> / <input type=”text” class=”gllpLongitude” value=”20″/>, zoom: <input type=”text” class=”gllpZoom” value=”3″/> <input type=”button” class=”gllpUpdateButton” value=”update map”>
+</fieldset>
+
+@endsection
+
+@section('script')
+  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <link rel="stylesheet" type="text/css" href="css/jquery-gmaps-latlon-picker.css"/>
+  <script src="js/jquery-gmaps-latlon-picker.js"></script>
+
 
 @endsection
