@@ -13,6 +13,13 @@
 <div class="form-group">
   <label for="address">Address</label>
   <textarea class="form-control" name="address" placeholder="Address" rows="3" required></textarea>
+  <fieldset class="gllpLatlonPicker">
+  <input type="text" class="gllpSearchField">
+  <input type="button" class="gllpSearchButton" value="search">
+  <br/>
+  <div class="gllpMap">Google Maps</div>
+  <input type="hidden" class="gllpLatitude" value="20"/> <input type="hidden" class="gllpLongitude" value="20"/> <input type="hidden" class="gllpZoom" value="3"/> <input type="button" class="gllpUpdateButton" value="update map">
+  </fieldset>
 </div>
  <div class="form-group">
   <label for="password" >Password</label>
@@ -22,13 +29,7 @@
   <button type="reset" class="btn pull-right">Cancel</button>
 </form>
 
-<fieldset class="gllpLatlonPicker">
-<input type="text" class="gllpSearchField">
-<input type="button" class="gllpSearchButton" value="search">
-<br/>
-<div class="gllpMap">Google Maps</div>
-lat/lon: <input type="text" class="gllpLatitude" value="20"/> / <input type="text" class="gllpLongitude" value="20"/>, zoom: <input type="text" class="gllpZoom" value="3"/> <input type="button" class="gllpUpdateButton" value="update map">
-</fieldset>
+
 
 @endsection
 
