@@ -21,6 +21,7 @@ class CashierController extends Controller
                     ->groupBy('order_id')
                   //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
                     ->get();
+        
         return view('cashier.cashier', [
             'title' => 'Cashier',
             'orders' => $orders,
@@ -36,13 +37,13 @@ class CashierController extends Controller
                   //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
                     ->get();
         return view('cashier.show_order_list', [
-            'title' => 'Cashier',
+            'title' => 'Show detail',
 			'orders' => $orders,
 		]);
     }
 
 
-    public function edit_paid($request)
+    public function edit_paid(Request $request)
     {        
         $order_id = $request->order_id;
         $food_id = $request->food_id;
@@ -50,12 +51,7 @@ class CashierController extends Controller
                     ->where('Orderfoodlists.order_id', $order_id)
                     ->where('Orderfoodlists.food_id', $food_id)
                     ->update(['Orderfoodlists.isPaid' => 1]);
-        
-        return view('cashier.show_order_list', [
-            'title' => 'Cashier',
-            'orders' => $orders,
-        ]);
-
+       return redirect('/cashier');
     }
 
 }

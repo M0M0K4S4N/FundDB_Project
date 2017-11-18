@@ -1,51 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@section('header')
+<meta http-equiv="Refresh" content="5">
+@endsection
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  </head>
-  <title>Restaurant</title>
-  <body>
-      <center><p class="h1"><strong>Deliverer</strong></p></center>
-      <div class="container">
-        <table class="table table-bordered">
-          <thead>
-            <tr class="table-active">
-              <th>Status</th>
-              <th>Adress</th>
-              <th>Telephon Number</th>
-              <th>Food's detail</th>
-              <th>cost</th>
-              <th>ยืนยันการจัดส่ง</th>
-              <th>ยืนยันการจ่ายเงิน</th>
-            </tr>
-          </thead>
-          <tbody>
+@extends('layouts.app')
 
-
-            @foreach ($orders as $order)
+@section('content')
+<table class="table table-bordered">
+  <thead>
+    <tr class="table-active">
+      <th>Status</th>
+      <th>Adress</th>
+      <th>Food's detail</th>
+      <th>cost</th>
+      <th>ยืนยันการจัดส่ง</th>
+      <th>ยืนยันการจ่ายเงิน</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach ($orders as $order)
       @if ($order == NULL)
         <p>NOT FOUND</p>
-        @break
+      @break
       @endif
-
-        <tr>
-              <td>รอจัดส่ง</td>
-              <td><a href="map.html">ที่อยู่1</a></td>
-              <td>0812345678</td>
-              <td>{{$order->food->name}}</td>
-              <td>100</td>
+      <tr>
+              <td>
+                    @if ($order->serve_flag == 1)
+                        @if($order->delivery_flag == 0)
+                            เสิร์ฟ
+                         @else
+                            จัดส่งแล้ว
+                        @endif
+                    @elseif($order->cooking_flag == 1)
+                        กำลังทำอาหาร
+                    @else
+                        รอคิว
+                    @endif
+              </td>
+              <td>{{$order->address}}</td>
+              <td>{{$order->name}}</td>
+              <td>{{$order->price}}</td>
               <td><a href="/delivery"><button type="button" class="btn btn-danger">confirm</button></a></td>
               <td><a href="/delivery"><button type="button" class="btn btn-success">confirm</button></a></td>
-            </tr>
-    @endforeach
-            
-          </tbody>
-        </table>
-      </div>
-  </body>
-</html>
+      </tr>
+      @endforeach
+  </tbody>
+</table>
+@endsection

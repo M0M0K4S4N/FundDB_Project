@@ -14,16 +14,25 @@ class ServerController extends Controller
 {
     public function delivery()
     {
-		$orders = Orderfoodlist::All();
+		$orders = DB::table('Orderfoodlists')
+                    ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+                    ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+                    ->join('Customers', 'Customers.id' , '=', 'Orders.customer_id')
+                    ->where('delivery_flag', '=', '1')
+                    ->get();
 
         return view('server.delivery', [
-            'title' => 'Serve',
+            'title' => 'Delivery',
 			'orders' => $orders,
 		]);
     }
      public function waiter()
     {
-        $orders = Orderfoodlist::All();
+        $orders = DB::table('Orderfoodlists')
+                    ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+                    ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+                    ->where('delivery_flag', '=', '0')
+                    ->get();
 
         return view('server.waiter', [
             'title' => 'Serve',
