@@ -91,6 +91,13 @@ class ManagerController extends Controller
 	{
 		$id = $request->id;
 		$food = Food::findOrFail($id);
+		/*
+		if there exists an linked promotion, deletes it.
+		*/
+		$promotion = DB::table('Promotions')
+					->where('Promotions.discount_for' , '=', $id )
+					->delete();
+		
 		$food->delete();
 
 		return redirect('/manager-menu');

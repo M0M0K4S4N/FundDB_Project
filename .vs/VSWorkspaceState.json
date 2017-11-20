@@ -8,9 +8,9 @@
     "\\php_lumen\\resources",
     "\\php_lumen\\resources\\views",
     "\\php_lumen\\resources\\views\\chef",
-    "\\php_lumen\\resources\\views\\customer",
-    "\\php_lumen\\resources\\views\\customer\\register"
+    "\\php_lumen\\resources\\views\\manager",
+    "\\php_lumen\\routes"
   ],
-  "SelectedNode": "\\php_lumen\\resources\\views\\customer\\menu.blade.php",
+  "SelectedNode": "\\php_lumen\\app\\Http\\Controllers\\CrudController.php",
   "PreviewInSolutionExplorer": false
 }
