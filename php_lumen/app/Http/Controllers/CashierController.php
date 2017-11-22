@@ -21,24 +21,24 @@ class CashierController extends Controller
                     ->groupBy('order_id')
                   //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
                     ->get();
+        //$foods = Orderfoodlist::where('order_id','=', $table)->get();
+        $promotions = Promotion::all();
         
         return view('cashier.cashier', [
             'title' => 'Cashier',
+            'promotions' => $promotions,
             'orders' => $orders,
         ]);
     }
 
     public function show_order_list($table)
     {
-    	      $orders = DB::table('Orderfoodlists')
-                    ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
-                    ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
-                    ->where('order_id' , '=', $table)
-                  //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
-                    ->get();
+            $foods = Orderfoodlist::where('order_id','=', $table)->get();
+            $promotions = Promotion::all();
         return view('cashier.show_order_list', [
             'title' => 'Show detail',
-			'orders' => $orders,
+            'promotions' => $promotions,
+			'foods' => $foods,
 		]);
     }
 

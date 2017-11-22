@@ -14,18 +14,35 @@
     </tr>
   </thead>
   <tbody>
-      @foreach ($orders as $order)
-      @if ($order == NULL)
-        <p>NOT FOUND</p>
-        @break
-      @endif
-      
+@php
+$discount=0;
+$result=0;
+@endphp
+
+@foreach($foods as $food)
+@foreach($promotions as $promotion)
+@php
+if($promotion->discount_for == $food->food->id)
+{
+  $discount = $promotion->discount_value;
+  break;
+}
+@endphp
+@endforeach
+@php
+$result += $food->Qty*($food->food->price - $discount);
+@endphp
     <tr>
-        <td>{{$order->order_id}}</td>
-        <td>{{$order->name}}</td>
-        <th scope="row">{{$order->price}}</th>
+        <td>{{$food->order_id}}</td>
+        <td>{{$food->food->name}}</td>
+        <th scope="row">{{ $food->Qty*($food->food->price - $discount)}}</th>
     </tr>
       @endforeach
+
+      <tr>
+      <th scope="row" ></th>
+      <td>รวม</td>
+      <td>{{$result}}</td>
             <!-- <tr>
               <td>1</td>
               <td>สเต๊กเนื้อ ซอสพริกไทยดำ ไข่ดาว</td>

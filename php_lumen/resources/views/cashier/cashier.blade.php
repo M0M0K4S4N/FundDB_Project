@@ -9,8 +9,6 @@
   <thead>
     <tr class="table-active">
     <th>order</th>
-    <th>ข้อมูลรายการอาหาร</th>
-    <th>รวมยอดเงิน</th>
     <th>ยืนยันการจ่ายเงิน</th>
     </tr>
   </thead>
@@ -22,13 +20,8 @@
       @endif
     <tr>
       <td>{{$order->order_id}}</td>
-      <td><a href="/cashier/{{$order->id}}">ดูรายการอาหาร</a>
+      <td><a href="/cashier/{{$order->id}}">Detail</a>
       </td>
-      <th scope="row"></th>
-      <td>
-        <form method="post" action="/register/view/delete">
-        <input type="hidden"  name="id" value={{ $order->id }}>
-        <button type="button" class="btn btn-success" onclick="location.href='/cashier/paid';">paid</button></td></form>
     </tr>
     @endforeach
             <!-- <tr>
@@ -47,4 +40,4 @@
             </tr> -->
   </tbody>
 </table>
-@endsection>
+@endsection
