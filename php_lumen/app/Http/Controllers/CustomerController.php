@@ -103,6 +103,10 @@ class CustomerController extends Controller
       if($request->session()->has('token'))
       {
         $foods = $request->input('food');
+        if(sizeof($foods) == 0)
+        {
+          return redirect('/customer/menu');
+        }
         $qty = $request->input('qty');
         $detail = $request->input('detail');
         $user = $this->get_user($request->session()->get('token'));
