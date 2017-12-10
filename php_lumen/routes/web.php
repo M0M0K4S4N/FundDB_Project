@@ -55,6 +55,7 @@ $router->get('/manager-menu', 'ManagerController@food_view');
 $router->get('/manager-menu/food-add', 'ManagerController@food_add');
 $router->post('/manager-menu/food-add', 'ManagerController@store_food_add_data');
 $router->post('/manager-menu/food-delete', 'ManagerController@food_delete');
+$router->get('/manager-menu/report', 'ManagerController@report_view');
 
 
 $router->get('/manager-worker', 'ManagerController@worker_view');

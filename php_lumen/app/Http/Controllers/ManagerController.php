@@ -17,7 +17,64 @@ use Illuminate\Support\Facades\File;
 
 class ManagerController extends Controller
 {
-    public function food_view()
+    public function report_view()
+	{
+	
+		/*$chart_orders = DB::table('Orderfoodlists')
+					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+					->where( 'Orderfoodlists.isPaid' , '=', 1)
+					->get();
+		*/
+
+		//Fried Chicken
+		$chart_orders_fried_chicken = DB::table('Orderfoodlists')
+					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
+					 DB::raw('Foods.name as name'),
+					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
+					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+					->where( 'Orderfoodlists.isPaid' , '=', 1)
+					->where( 'Foods.name' ,'=', 'Fried Chicken')
+					->groupBy(DB::raw('date'))
+					->get();
+
+		//French Fries
+		$chart_orders_french_fries = DB::table('Orderfoodlists')
+					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
+					 DB::raw('Foods.name as name'),
+					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
+					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+					->where( 'Orderfoodlists.isPaid' , '=', 1)
+					->where( 'Foods.name' ,'=', 'French Fries')
+					->groupBy(DB::raw('date'))
+					->get();
+
+		//Coke
+		$chart_orders_coke = DB::table('Orderfoodlists')
+					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
+					 DB::raw('Foods.name as name'),
+					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
+					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+					->where( 'Orderfoodlists.isPaid' , '=', 1)
+					->where( 'Foods.name' ,'=', 'Coke')
+					->groupBy(DB::raw('date'))
+					->get();
+
+		$chart_orders = $chart_orders_fried_chicken->merge($chart_orders_french_fries)->merge($chart_orders_coke)->sortByDesc('date');
+		
+        return view('manager.food_report', [
+          'title' => 'Report',
+          'charts' => $chart_orders
+        ]);
+		
+
+	
+	}
+	
+	public function food_view()
 	{
 		$foods = Food::all();
         foreach ($foods as $food)
@@ -28,9 +85,17 @@ class ManagerController extends Controller
             $food->price = (string)($food->price ) ." โปรโมชั่น ".(string)( $food->price - $food->havePromotion->discount_value);
           }
         }
+
+		$chart_orders = DB::table('Orderfoodlists')
+					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+					->where( 'Orderfoodlists.isPaid' , '=', 1)
+					->get();
+
+
         return view('manager.guest_menu', [
           'title' => 'Menu',
-          'foods' => $foods
+          'foods' => $foods,
         ]);
 	}
 
