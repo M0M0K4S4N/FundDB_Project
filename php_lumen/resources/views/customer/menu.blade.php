@@ -1,12 +1,9 @@
 @section('header')
 <style type="text/css">
-    .thumb{
-    }
-    .img {
-    }
     input.chk{
-    margin-left: 20px;
+      margin-left: 20px;
     }
+
  </style>
 @endsection
 
@@ -24,19 +21,14 @@
 
     <div class="card-deck">
     @endif
-
     <div class="card">
-
       <label for="img{{$i}}">
       <img class="card-img-top" src="..{{$foods[$i-1]->picture}}" alt="Card image cap">
-
-
-
     <div class="card-body">
       <h4 class="card-title">{{$foods[$i-1]->name}}</h4>
-    </label>
     </div>
     <div class="card-footer">
+      </label>
       <big class="text-muted">ราคา {{$foods[$i-1]->price}} บาท</big>
       <input type="number" name="qty[]" value="1">
       <input type="checkbox" class="chk" id="img{{$i}}"name="food[]" value="{{$foods[$i-1]->id}}">
@@ -49,8 +41,17 @@
     @endif
 
 @endfor
-<input type="text"  name="detail" value="">
-<button type="submit" class="btn btn-primary">Order</button>
+<div class="card">
+  <div class="card-header">
+    หมายเหตุ
+  </div>
+  <div class="card-body">
+    <textarea class="form-control" name="detail" value=""></textarea>
+  </div>
+</div>
+<div align="right">
+<button type="submit" class="btn btn-primary btn-lg" align="right">Order</button>
+</div>
 </form>
 
 
