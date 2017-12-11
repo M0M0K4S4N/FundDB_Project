@@ -12,16 +12,17 @@
 </div>
 <div class="form-group">
   <label for="address">Address</label>
-  <textarea class="form-control" name="address" placeholder="Address" rows="3" required></textarea>
-  <fieldset class="gllpLatlonPicker">
-  <input type="text" class="gllpSearchField">
-  <input type="button" class="gllpSearchButton" value="search">
+  <fieldset class="gllpLatlonPicker ">
+  <textarea class="gllpSearchField form-control" name="address" placeholder="Address" rows="3" required></textarea>
+
+  <!-- <input type="text" class="gllpSearchField form-control"> -->
+  <input type="button" class="gllpSearchButton btn btn-info btn-sm" value="Map Search">
   <br/>
   <div class="gllpMap">Google Maps</div>
   <input type="hidden" class="gllpLatitude" name="lat" value="20"/>
   <input type="hidden" class="gllpLongitude" name="long" value="20"/>
    <input type="hidden" class="gllpZoom" value="3"/>
-   <input type="button" class="gllpUpdateButton" value="update map">
+   <!-- <input type="button" class="gllpUpdateButton btn btn-info btn-sm" value="update map"> -->
   </fieldset>
 </div>
  <div class="form-group">
