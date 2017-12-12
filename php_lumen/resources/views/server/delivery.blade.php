@@ -9,14 +9,15 @@
   <thead>
     <tr class="table-active">
       <th>Status</th>
+      <th>Order</th>
       <th>Adress</th>
-      <th>Food's detail</th>
-      <th>cost</th>
       <th>ยืนยันการจัดส่ง</th>
-      <th>ยืนยันการจ่ายเงิน</th>
+      <th>Detail $ Paid</th>
     </tr>
   </thead>
   <tbody>
+
+
       @foreach ($orders as $order)
       @if ($order == NULL)
         <p>NOT FOUND</p>
@@ -36,13 +37,36 @@
                         รอคิว
                     @endif
               </td>
-              <td>{{$order->address}}</td>
-              <td>{{$order->name}}</td>
-              <td>{{$order->price}}</td>
-              <td><a href="/delivery"><button type="button" class="btn btn-danger">confirm</button></a></td>
-              <td><a href="/delivery"><button type="button" class="btn btn-success">confirm</button></a></td>
+              <td>{{$order->order_id}}</td>
+              <td><a href="/delivery/mapOf{{$order->customer_id}}">{{$order->address}}</a></td>
+            <form method="post" action="/delivery/served{{$order->order_id}}">
+            <input type="hidden" name="order_id" value="{{ $order->order_id}}">
+            <input type="hidden" name="food_id" value="{{ $order->food_id}}">
+
+          @if ($order->isServe == 0)
+              <td><button type="submit" class="btn btn-success" 
+              @if($order->serve_flag != 1)
+                  disabled
+              @endif
+            >confirm</button></td>
+          @else
+          <td><button type="button" class="btn btn-danger" disabled>confirm</button></td>
+          @endif
+
+
+          </form>
+          <form method="post" action="/delivery/detail{{$order->order_id}}">
+        <input type="hidden" name="order_id" value="{{ $order->order_id}}">
+        <input type="hidden" name="food_id" value="{{ $order->food_id}}">
+        
+      <td><button type="submit" class="btn btn-primary" 
+              @if($order->isPaid == 1)
+                  disabled
+              @endif
+              >Detail</button></td>
+    </form>
       </tr>
-      @endforeach
+@endforeach
   </tbody>
 </table>
 @endsection

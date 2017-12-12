@@ -10,6 +10,8 @@
     <tr class="table-active">
       <th>Order</th>
       <th>รายการอาหารที่สั่ง</th>
+      <th>จำนวน</th>
+      <th>ราคาต่อหน่วย</th>
       <th>ราคา</th>    
     </tr>
   </thead>
@@ -35,28 +37,28 @@ $result += $food->Qty*($food->food->price - $discount);
     <tr>
         <td>{{$food->order_id}}</td>
         <td>{{$food->food->name}}</td>
-        <th scope="row">{{ $food->Qty*($food->food->price - $discount)}}</th>
+        <td>{{$food->Qty}}</td>
+        <td>{{$food->food->price - $discount}}</td>
+        <td>{{ $food->Qty*($food->food->price - $discount)}}</td>
     </tr>
-      @endforeach
-
+@endforeach
+      <tr>   
+      <td colspan="4">รวม</td>
+      <th scope="row">{{$result}}</th>
+      </tr>
+ 
       <tr>
-      <th scope="row" ></th>
-      <td>รวม</td>
-      <td>{{$result}}</td>
-            <!-- <tr>
-              <td>1</td>
-              <td>สเต๊กเนื้อ ซอสพริกไทยดำ ไข่ดาว</td>
-              <th scope="row">500</th>
-              <td><button type="button" class="btn btn-success">paid</button></td>
-            </tr>
-
-
-            <tr>
-              <td>5</td>
-              <td>สเต๊กเนื้อ ซอสพริกไทยดำ ไข่ดาว ไม่สุก</td>
-              <th scope="row">490</th>
-              <td><button type="button" class="btn btn-success">paid</button></td>
-            </tr> -->
+      <td colspan="4">ยืนยันการจ่ายเงิน</td>
+      @foreach($foods as $food)
+      <form method="post" action="/cashier/paid{{$food->order_id}}">
+        <input type="hidden" name="order_id" value="{{ $food->order_id}}">
+        <input type="hidden" name="food_id" value="{{ $food->food_id}}">
+        @endforeach
+      <td><button type="submit" class="btn btn-primary">Paid</button></td>
+    </form>
+    
+      </tr>
   </tbody>
 </table>
+
 @endsection

@@ -11,6 +11,7 @@
         <th>Status</th>
         <th>Table</th>
         <th>Food's detail</th>
+        <th>Confirm</th>
       </tr>
   </thead>
   <tbody>
@@ -35,6 +36,20 @@
           </td>
           <td>{{$order->order_id}}</td>
           <td>{{$order->name}}</td>
+          <form method="post" action="/waiter/served">
+            <input type="hidden" name="order_id" value="{{ $order->order_id}}">
+            <input type="hidden" name="food_id" value="{{ $order->food_id}}">
+
+          @if ($order->isServe == 0)
+              <td><button type="submit" class="btn btn-success" 
+              @if($order->serve_flag != 1)
+                  disabled
+              @endif
+            >serve</button></td>
+          @else
+          <td><button type="button" class="btn btn-danger" disabled>served</button></td>
+          @endif
+          </form>
       </tr>
       @endforeach
   </tbody>

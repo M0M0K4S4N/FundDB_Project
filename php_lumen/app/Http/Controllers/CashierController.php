@@ -33,7 +33,7 @@ class CashierController extends Controller
 
     public function show_order_list($table)
     {
-            $foods = Orderfoodlist::where('order_id','=', $table)->get();
+            $foods = Orderfoodlist::where('order_id','=', $table, 'AND','isPaid','=','0')->get();
             $promotions = Promotion::all();
         return view('cashier.show_order_list', [
             'title' => 'Show detail',
@@ -43,14 +43,11 @@ class CashierController extends Controller
     }
 
 
-    public function edit_paid(Request $request)
+    public function edit_paid(Request $request, $table)
     {        
         $order_id = $request->order_id;
         $food_id = $request->food_id;
-        $order = DB::table('Orderfoodlists')
-                    ->where('Orderfoodlists.order_id', $order_id)
-                    ->where('Orderfoodlists.food_id', $food_id)
-                    ->update(['Orderfoodlists.isPaid' => 1]);
+        $foods = Orderfoodlist::where('order_id','=', $table, 'AND', 'isPaid', '=', '0')->update(['Orderfoodlists.isPaid' => 1]);
        return redirect('/cashier');
     }
 
