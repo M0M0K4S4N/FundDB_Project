@@ -18,6 +18,7 @@ class CashierController extends Controller
         $orders = DB::table('Orderfoodlists')
                     ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
                     ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+                    ->where('delivery_flag','=','0')
                     ->groupBy('order_id')
                   //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
                     ->get();
@@ -33,7 +34,7 @@ class CashierController extends Controller
 
     public function show_order_list($table)
     {
-            $foods = Orderfoodlist::where('order_id','=', $table, 'AND','isPaid','=','0')->get();
+            $foods = Orderfoodlist::where('order_id','=', $table)->get();
             $promotions = Promotion::all();
         return view('cashier.show_order_list', [
             'title' => 'Show detail',

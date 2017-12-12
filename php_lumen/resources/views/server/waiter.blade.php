@@ -5,6 +5,7 @@
 @extends('layouts.app')
 
 @section('content')
+<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/';">Back to Homepage</button>
 <table class="table table-bordered">
   <thead>
       <tr class="bg-info">
@@ -23,10 +24,14 @@
       <tr>
           <td>
                     @if ($order->serve_flag == 1)
-                        @if($order->delivery_flag == 0)
-                            เสิร์ฟ
+                        @if($order->isServe == 1)
+                            @if($order->isPaid == 1)
+                                      จ่ายเงินแล้ว
+                                   @else
+                                      เสิร์ฟแล้ว
+                                  @endif
                          @else
-                            จัดส่งแล้ว
+                            รอเสิร์ฟ
                         @endif
                     @elseif($order->cooking_flag == 1)
                         กำลังทำอาหาร

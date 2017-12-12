@@ -5,6 +5,7 @@
 @extends('layouts.app')
 
 @section('content')
+<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/';">Back to Homepage</button>
 <table class="table table-bordered">
   <thead>
     <tr class="table-active">
