@@ -13,7 +13,7 @@
 
 <a href="/"><button type="button" class="btn btn-primary">Back to Homepage</button></a>
 <a href="/customer/queue"><button type="button" class="btn btn-primary">My order queue</button></a>
-<object align="right">You are  <font size="4" color="blue">{{$user->name}}</font> <button type="button" class="btn btn-danger btn-sm" onclick="location.href='/logout';">Logout</button>
+<object align="right">You are  <a href='/customer/profile'><font size="4" color="blue">{{$user->name}}</font></a> <button type="button" class="btn btn-danger btn-sm" onclick="location.href='/logout';">Logout</button>
 </object>
 <form method="post" action="/customer/order">
 @for ($i = 1; $i <= count($foods); $i++)

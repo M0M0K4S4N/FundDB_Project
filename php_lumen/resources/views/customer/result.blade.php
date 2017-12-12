@@ -4,7 +4,7 @@
 
 <button type="button" class="btn btn-primary" onclick="location.href='/';">Back to Homepage</button>
 <button type="button" class="btn btn-primary" onclick="location.href='/customer/menu';">Go to Menu</button>
-<button type="button" class="btn btn-primary" onclick="location.href='/customer/menu';">My order queue</button>
+<button type="button" class="btn btn-primary" onclick="location.href='/customer/queue';">My order queue</button>
 <object align="right">You are  <font size="4" color="blue">{{$user->name}}</font> <button type="button" class="btn btn-danger btn-sm" onclick="location.href='/logout';">Logout</button>
 </object>
 <table class="table table-striped">
