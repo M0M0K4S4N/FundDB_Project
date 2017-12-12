@@ -28,6 +28,8 @@ $router->post('/customer/order', 'CustomerController@place_order');
 $router->get('/customer/queue', 'CustomerController@view_order');
 $router->get('/customer/result', 'CustomerController@view_order_result');
 
+$router->get('/customer/profile', 'CustomerController@get_user_profile');
+$router->post('/customer/profile', 'CustomerController@save_new_user_profile');
 
 //crud in class
 $router->get('/crud', function(){

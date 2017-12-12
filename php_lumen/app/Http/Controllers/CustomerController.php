@@ -140,7 +140,8 @@ class CustomerController extends Controller
 
     private function get_waiting_queue($first_id)
     {
-      $list  = Orderfoodlist::where('cooking_flag', 0)->get();
+      $list  = Orderfoodlist::where('cooking_flag', 0)
+                            ->get();
       $count = 0;
       foreach ($list as $elem)
       {
@@ -170,6 +171,7 @@ class CustomerController extends Controller
                           ->where('orders.customer_id','=',$user->id)
                           ->where('orderfoodlists.isPaid','=',0)
                           ->select('orderfoodlists.*','foods.name as food_name','orders.order_time','orders.delivery_flag')
+                          ->orderBy('orders.order_time', 'asc')
                           ->get();
       if(count($customerOrders) == 0){
         return redirect('/customer/menu');
@@ -184,6 +186,48 @@ class CustomerController extends Controller
           'queue' => $waiting,
           'user' => $user
       ]);
+    }
+
+    public function get_user_profile(Request $request)
+    {
+      if(!$request->session()->has('token'))
+      {
+        return redirect('/login');
+      }
+      $user = $this->get_user($request->session()->get('token'));
+      if(!$user)
+      {
+        return redirect('/logout');
+      }
+
+      return view('customer.register.profile', [
+          'title' => 'Edit Profile',
+          'user' => $user
+
+      ]);
+    }
+
+    public function save_new_user_profile(Request $request)
+    {
+      if(!$request->session()->has('token'))
+      {
+        return redirect('/login');
+      }
+      $user = $this->get_user($request->session()->get('token'));
+      if(!$user)
+      {
+        return redirect('/logout');
+      }
+
+      $user->address = $request->get('address');
+      $user->lat = $request->get('lat');
+      $user->long = $request->get('long');
+      $user->name = $request->get('name');
+      $user->password = crypt($request->input('password'), env('USER_PASSWORD_SALT'));
+      $user->save();
+
+
+      return redirect('/customer/profile');
     }
 
     public function delete_food_queue(Request $request)
