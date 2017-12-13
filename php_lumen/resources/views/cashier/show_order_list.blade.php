@@ -59,7 +59,9 @@ $result += $food->Qty*($food->food->price - $discount);
 @endforeach
       <tr>   
       <td colspan="5">รวม</td>
-      <th scope="row">{{$result}}</th>
+      <th scope="row">{{$result}} @if($food->isPaid == 1)
+                  จ่ายแล้ว
+              @endif</th>
       </tr>
 
       <tr>   

@@ -19,6 +19,7 @@ class CashierController extends Controller
                     ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
                     ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
                     ->where('delivery_flag','=','0')
+                    ->where('isPaid', '=','0')
                     ->groupBy('order_id')
                   //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
                     ->get();
@@ -49,7 +50,7 @@ class CashierController extends Controller
         $order_id = $request->order_id;
         $food_id = $request->food_id;
         $foods = Orderfoodlist::where('order_id','=', $table, 'AND', 'isPaid', '=', '0')->update(['Orderfoodlists.isPaid' => 1]);
-       return redirect('/');
+       return redirect('/cashier');
     }
 
 }

@@ -18,7 +18,8 @@ class ServerController extends Controller
                     ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
                     ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
                     ->join('Customers', 'Customers.id' , '=', 'Orders.customer_id')
-                    ->where('delivery_flag', '=', '1', 'AND', 'serve_flag', '=', '1' , 'AND', 'cooking_flag', '=', '1')
+                    ->where('delivery_flag', '=', '1', 'AND', 'serve_flag', '=', '1' , 'AND', 'cooking_flag', '=', '1','AND')
+                    ->where('isPaid', '=','0')
                     ->groupBy('Customer_id')
                     ->orderBy('Customer_id','ASC')
                     ->get();
@@ -44,7 +45,10 @@ class ServerController extends Controller
         $orders = DB::table('Orderfoodlists')
                     ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
                     ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
-                    ->where('delivery_flag', '=', '0', 'AND', 'isServe', '=', '0')
+                    /*->where('delivery_flag', '=', '0')
+                    ->where('cooking_flag', '=', '0')
+                    ->where('serve_flag', '=', '0')*/
+                    ->where('isServe', '=', '0')
                     ->orderBy('order_id','ASC')
                     ->get();
 

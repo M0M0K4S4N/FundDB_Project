@@ -21,7 +21,9 @@
       @endif
     <tr>
       <td>{{$order->order_id}}</td>
-      <td><button type="button" class="btn btn-info" onclick="location.href='/cashier/{{$order->id}}';">Detail</button>
+      <td><button type="button" class="btn btn-info" onclick="location.href='/cashier/{{$order->id}}';" @if($order->isPaid == 1)
+                  disabled
+              @endif>Detail</button>
       </td>
     </tr>
     @endforeach
