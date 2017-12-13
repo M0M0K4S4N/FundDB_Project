@@ -311,7 +311,8 @@ class ManagerController extends Controller
         return view('manager.promotion_add', [
             'title' => 'Manager: Adding Promotion',
 		]);
-
+		
+]);
     }
 
 	public function store_promotion_add(Request $request)
