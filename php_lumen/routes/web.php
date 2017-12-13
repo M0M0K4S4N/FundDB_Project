@@ -28,6 +28,8 @@ $router->post('/customer/order', 'CustomerController@place_order');
 $router->get('/customer/queue', 'CustomerController@view_order');
 $router->get('/customer/result', 'CustomerController@view_order_result');
 
+$router->get('/customer/profile', 'CustomerController@get_user_profile');
+$router->post('/customer/profile', 'CustomerController@save_new_user_profile');
 
 //crud in class
 $router->get('/crud', function(){
@@ -55,6 +57,7 @@ $router->get('/manager-menu', 'ManagerController@food_view');
 $router->get('/manager-menu/food-add', 'ManagerController@food_add');
 $router->post('/manager-menu/food-add', 'ManagerController@store_food_add_data');
 $router->post('/manager-menu/food-delete', 'ManagerController@food_delete');
+$router->get('/manager-menu/report', 'ManagerController@report_view');
 
 
 $router->get('/manager-worker', 'ManagerController@worker_view');

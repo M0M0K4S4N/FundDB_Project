@@ -17,6 +17,7 @@ class ChefController extends Controller
 		$orders = DB::table('Orderfoodlists')
 					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
 					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+					->where( 'Orderfoodlists.isPaid' , '=', 0)
 					->get();
 	
         return view('chef.menu_list', [

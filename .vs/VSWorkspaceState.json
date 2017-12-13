@@ -7,10 +7,10 @@
     "\\php_lumen\\app\\Http\\Controllers",
     "\\php_lumen\\resources",
     "\\php_lumen\\resources\\views",
-    "\\php_lumen\\resources\\views\\chef",
+    "\\php_lumen\\resources\\views\\layouts",
     "\\php_lumen\\resources\\views\\manager",
     "\\php_lumen\\routes"
   ],
-  "SelectedNode": "\\php_lumen\\app\\Http\\Controllers\\CrudController.php",
+  "SelectedNode": "\\php_lumen\\resources\\views\\manager\\guest_menu.blade.php",
   "PreviewInSolutionExplorer": false
 }

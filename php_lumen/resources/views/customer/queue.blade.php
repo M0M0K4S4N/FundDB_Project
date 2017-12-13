@@ -7,7 +7,7 @@
 @section('content')
 <button type="button" class="btn btn-primary" onclick="location.href='/';">Back to Homepage</button>
 <button type="button" class="btn btn-primary" onclick="location.href='/customer/menu';">Go to Menu</button>
-<object align="right">You are  <font size="4" color="blue">{{$user->name}}</font> <button type="button" class="btn btn-danger btn-sm" onclick="location.href='/logout';">Logout</button>
+<object align="right">You are  <a href='/customer/profile'><font size="4" color="blue">{{$user->name}}</font></a>  <button type="button" class="btn btn-danger btn-sm" onclick="location.href='/logout';">Logout</button>
 </object>
 <center><p>กำลังรอ  <p class="h1"> {{$queue}}</p> คิว</p></center>
 
