@@ -5,12 +5,12 @@
     "\\php_lumen\\app",
     "\\php_lumen\\app\\Http",
     "\\php_lumen\\app\\Http\\Controllers",
+    "\\php_lumen\\bootstrap",
     "\\php_lumen\\resources",
     "\\php_lumen\\resources\\views",
-    "\\php_lumen\\resources\\views\\layouts",
-    "\\php_lumen\\resources\\views\\manager",
+    "\\php_lumen\\resources\\views\\chef",
     "\\php_lumen\\routes"
   ],
-  "SelectedNode": "\\php_lumen\\resources\\views\\manager\\guest_menu.blade.php",
+  "SelectedNode": "\\php_lumen\\bootstrap\\app.php",
   "PreviewInSolutionExplorer": false
 }
