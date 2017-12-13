@@ -3,17 +3,11 @@
 
 @section('content')
 <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/delivery';">Back</button>
+<div>
 <section id="map" class="testimonials">
-            <div class="container">
-                <div class="row">
-                    <div class="center-title text-center">
-                        <span class="center-line"></span>
-                        <div id="map-canvas" style="width: 790px;height: 500px;"></div>
-                    </div>
-                </div><!--section title-->
-            </div>  
-        </section><!--about us-->
-
+  <div id="map-canvas" style="height: 500px;"></div>
+</section><!--about us-->
+</div>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWHqgPdKV5J3TRtnvVlAsQtcKLJIGQ17U&callback=initMap"
   type="text/javascript"></script>
@@ -21,7 +15,7 @@
             var myLatlng;
             var map;
             var marker;
- 
+
             function initialize() {
 @foreach ($orders as $order)
                 myLatlng = new google.maps.LatLng({{$order->lat}},{{$order->long}});
