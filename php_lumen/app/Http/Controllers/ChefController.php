@@ -18,8 +18,9 @@ class ChefController extends Controller
 					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
 					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
 					->where( 'Orderfoodlists.isPaid' , '=', 0)
-					->get();
-	
+          ->orderBy('orders.order_time', 'asc')
+          ->get();
+
         return view('chef.menu_list', [
             'title' => 'Chef',
 			'orders' => $orders,
@@ -28,7 +29,7 @@ class ChefController extends Controller
 
 	public function update_order_status_cooking(Request $request)
 	{
-		
+
 		$order_id = $request->order_id;
 		$food_id = $request->food_id;
 
@@ -36,15 +37,15 @@ class ChefController extends Controller
 					->where('Orderfoodlists.order_id', $order_id)
 					->where('Orderfoodlists.food_id', $food_id)
 					->update(['Orderfoodlists.cooking_flag' => 1]);
-		
+
 
 		return redirect('/chef-queue');
 
 	}
-	
+
 	public function update_order_status_ready(Request $request)
 	{
-		
+
 		$order_id = $request->order_id;
 		$food_id = $request->food_id;
 
@@ -52,7 +53,7 @@ class ChefController extends Controller
 					->where('Orderfoodlists.order_id', $order_id)
 					->where('Orderfoodlists.food_id', $food_id)
 					->update(['Orderfoodlists.serve_flag' => 1]);
-		
+
 
 		return redirect('/chef-queue');
 
@@ -60,7 +61,7 @@ class ChefController extends Controller
 
 	public function cancel_order(Request $request)
 	{
-		
+
 		$order_id = $request->order_id;
 		$food_id = $request->food_id;
 
@@ -68,7 +69,7 @@ class ChefController extends Controller
 					->where('Orderfoodlists.order_id', $order_id)
 					->where('Orderfoodlists.food_id', $food_id)
 					->delete();
-		
+
 
 		return redirect('/chef-queue');
 
