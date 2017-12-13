@@ -8,7 +8,11 @@
 </div>
 <div class="form-group">
   <label for="type">Type</label>
-  <input type="text" class="form-control" name="type"  placeholder="type" required>
+  <select name="type" class="form-control">
+     <option value="Meal">Meal</option>
+     <option value="Drink">Drink</option>
+     <option value="Desert">Desert</option>
+  </select>
 </div>
 <div class="form-group">
   <label for="price">Price</label>
