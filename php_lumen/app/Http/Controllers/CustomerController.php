@@ -80,9 +80,10 @@ class CustomerController extends Controller
        {
          return redirect('/logout');
        }
+       $now = Carbon::now();
        foreach ($foods as $food)
        {
-         if($food->havePromotion)
+         if($food->havePromotion && $now->lt(Carbon::parse($food->havePromotion->end_date)) && $now->gt(Carbon::parse($food->havePromotion->start_date)))
          {
 
            $food->price = (string)($food->price ) ." โปรโมชั่น ".(string)( $food->price - $food->havePromotion->discount_value);
@@ -371,7 +372,7 @@ class CustomerController extends Controller
         $foods = Food::all();
         foreach ($foods as $food)
         {
-          if($food->havePromotion)
+          if($food->havePromotion && $now->lt(Carbon::parse($food->havePromotion->end_date)) && $now->gt(Carbon::parse($food->havePromotion->start_date)))
           {
 
             $food->price = (string)($food->price ) ." โปรโมชั่น ".(string)( $food->price - $food->havePromotion->discount_value);
