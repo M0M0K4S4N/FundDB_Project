@@ -76,9 +76,13 @@ $router->post('/manager-promotion/promotion-delete', 'ManagerController@promotio
 
 
 $router->get('/cashier', 'CashierController@check_bill');
-$router->get('/cashier/paid', 'CashierController@edit_paid');
+$router->post('/cashier/paid{id}', 'CashierController@edit_paid');
 $router->get('/cashier/{id}', 'CashierController@show_order_list');
 $router->get('/delivery', 'ServerController@delivery');
-$router->get('/delivery/update', 'ServerController@');
+$router->get('/delivery/mapOf{id}', 'ServerController@map');
+$router->post('/delivery/served', 'ServerController@edit_served_for_delivery');
+$router->get('/delivery/detail{id}', 'ServerController@show_order_list_delivery');
+$router->post('/delivery/paid{id}', 'ServerController@edit_paid_for_delivery');
 $router->get('/waiter', 'ServerController@waiter');
+$router->post('/waiter/served', 'ServerController@edit_served');
 $router->get('/status', 'ServerController@status');

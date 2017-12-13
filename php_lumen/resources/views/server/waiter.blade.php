@@ -1,49 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@section('header')
+<meta http-equiv="Refresh" content="5">
+@endsection
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  </head>
-  <title>Restaurant</title>
-  <body>
-      <center><p class="h1"><strong>WAITER/WAITRESS</strong></p></center>
-      <div class="container">
-        <table class="table table-bordered">
-          <thead>
-            <tr class="bg-info">
-              <th>Status</th>
-              <th>Table</th>
-              <th>Food's detail</th>
-              <th>Confirm</th>
-            </tr>
-          </thead>
-          <tbody>
+@extends('layouts.app')
 
-
-
-             @foreach ($orders as $order)
+@section('content')
+<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/';">Back to Homepage</button>
+<table class="table table-bordered">
+  <thead>
+      <tr class="bg-info">
+        <th>Status</th>
+        <th>Table</th>
+        <th>Food's detail</th>
+        <th>Confirm</th>
+      </tr>
+  </thead>
+  <tbody>
+      @foreach ($orders as $order)
       @if ($order == NULL)
         <p>NOT FOUND</p>
         @break
       @endif
+      <tr>
+          <td>
+                    @if ($order->serve_flag == 1)
+                        @if($order->isServe == 1)
+                            @if($order->isPaid == 1)
+                                      จ่ายเงินแล้ว
+                                   @else
+                                      เสิร์ฟแล้ว
+                                  @endif
+                         @else
+                            รอเสิร์ฟ
+                        @endif
+                    @elseif($order->cooking_flag == 1)
+                        กำลังทำอาหาร
+                    @else
+                        รอคิว
+                    @endif 
+          </td>
+          <td>{{$order->order_id}}</td>
+          <td>{{$order->name}}</td>
+          <form method="post" action="/waiter/served">
+            <input type="hidden" name="order_id" value="{{ $order->order_id}}">
+            <input type="hidden" name="food_id" value="{{ $order->food_id}}">
 
-        <tr>
-              <td>รอเสริฟ</td>
-              <th scope="row">{{$order->id}}</th>
-              <td>{{$order->food->name}}</td>
-              <td><a href="/waiter"><button type="button" class="btn btn-success">served</button></a></td>
-            </tr>
-
-    @endforeach
-
-
-    
-          </tbody>
-        </table>
-      </div>
-  </body>
-</html>
+          @if ($order->isServe == 0)
+              <td><button type="submit" class="btn btn-success" 
+              @if($order->serve_flag != 1)
+                  disabled
+              @endif
+            >serve</button></td>
+          @else
+          <td><button type="button" class="btn btn-danger" disabled>served</button></td>
+          @endif
+          </form>
+      </tr>
+      @endforeach
+  </tbody>
+</table>
+ @endsection

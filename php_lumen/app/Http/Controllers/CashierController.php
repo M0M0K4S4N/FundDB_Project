@@ -14,38 +14,42 @@ class CashierController extends Controller
 {
     public function check_bill()
     {
-		$orders = Order::All();
-
+		//$orders = Orderfoodlist::All();
+        $orders = DB::table('Orderfoodlists')
+                    ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+                    ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+                    ->where('delivery_flag','=','0')
+                    ->groupBy('order_id')
+                  //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
+                    ->get();
+        //$foods = Orderfoodlist::where('order_id','=', $table)->get();
+        $promotions = Promotion::all();
+        
         return view('cashier.cashier', [
             'title' => 'Cashier',
-			'orders' => $orders,
-		]);
+            'promotions' => $promotions,
+            'orders' => $orders,
+        ]);
     }
 
     public function show_order_list($table)
     {
-    	$orders = Orderfoodlist::findOrFail($table);
+            $foods = Orderfoodlist::where('order_id','=', $table)->get();
+            $promotions = Promotion::all();
         return view('cashier.show_order_list', [
-            'title' => 'Cashier',
-			'orders' => $orders,
+            'title' => 'Show detail',
+            'promotions' => $promotions,
+			'foods' => $foods,
 		]);
     }
 
 
-    public function edit_paid($request)
+    public function edit_paid(Request $request, $table)
     {        
         $order_id = $request->order_id;
         $food_id = $request->food_id;
-        $order = DB::table('Orderfoodlists')
-                    ->where('Orderfoodlists.order_id', $order_id)
-                    ->where('Orderfoodlists.food_id', $food_id)
-                    ->update(['Orderfoodlists.isPaid' => 1]);
-        
-        return view('cashier.show_order_list', [
-            'title' => 'Cashier',
-            'orders' => $orders,
-        ]);
-
+        $foods = Orderfoodlist::where('order_id','=', $table, 'AND', 'isPaid', '=', '0')->update(['Orderfoodlists.isPaid' => 1]);
+       return redirect('/');
     }
 
 }

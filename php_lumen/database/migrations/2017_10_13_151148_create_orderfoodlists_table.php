@@ -22,7 +22,9 @@ class CreateOrderfoodlistsTable extends Migration
             $table->integer('cook_by')->unsigned()->nullable();
             $table->integer('cooking_flag')->unsigned();
             $table->integer('serve_flag')->unsigned();
+            $table->integer('isServe')->unsigned();
             $table->integer('isPaid')->unsigned();
+
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('set null')->onUpdate('cascade');
             $table->foreign('food_id')->references('id')->on('foods')->onDelete('set null')->onUpdate('cascade');
