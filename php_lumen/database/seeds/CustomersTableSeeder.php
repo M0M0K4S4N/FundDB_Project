@@ -12,38 +12,58 @@ class CustomersTableSeeder extends Seeder
     public function run()
     {
           DB::table('customers')->insert([
+           'name' => 'โต๊ะ 1',
+           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
+           'address' => '-',
+           'api_token' => str_random(30),
+          ]);
+
+          DB::table('customers')->insert([
+           'name' => 'โต๊ะ 2',
+           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
+           'address' => '-',
+           'api_token' => str_random(30),
+          ]);
+
+          DB::table('customers')->insert([
+           'name' => 'โต๊ะ 3',
+           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
+           'address' => '-',
+           'api_token' => str_random(30),
+          ]);
+
+          DB::table('customers')->insert([
+           'name' => 'โต๊ะ 4',
+           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
+           'address' => '-',
+           'api_token' => str_random(30),
+          ]);
+
+          DB::table('customers')->insert([
            'name' => 'John Brody',
            'password' => crypt('1234', env('USER_PASSWORD_SALT')),
-           'address' => str_random(20),
+           'address' => 'มช',
            'api_token' => str_random(30),
+           'lat' => '18.8059685',
+           'long' => '98.95336210000005'
           ]);
 
           DB::table('customers')->insert([
-           'name' => 'Ant Mod',
+           'name' => 'Jane Doe',
            'password' => crypt('1234', env('USER_PASSWORD_SALT')),
-           'address' => str_random(20),
+           'address' => 'มช',
            'api_token' => str_random(30),
+           'lat' => '18.8059685',
+           'long' => '98.95336210000005'
           ]);
 
           DB::table('customers')->insert([
-           'name' => 'Bird Nok',
+           'name' => 'Bob',
            'password' => crypt('1234', env('USER_PASSWORD_SALT')),
-           'address' => str_random(20),
+           'address' => 'มช',
            'api_token' => str_random(30),
-          ]);
-
-          DB::table('customers')->insert([
-           'name' => 'Cat Meow',
-           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
-           'address' => str_random(20),
-           'api_token' => str_random(30),
-          ]);
-
-          DB::table('customers')->insert([
-           'name' => 'Nong Chachacha',
-           'password' => crypt('1234', env('USER_PASSWORD_SALT')),
-           'address' => str_random(20),
-           'api_token' => str_random(30),
+           'lat' => '18.8059685',
+           'long' => '98.95336210000005'
           ]);
 
     }
