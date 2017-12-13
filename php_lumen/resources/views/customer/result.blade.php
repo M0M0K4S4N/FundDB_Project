@@ -37,7 +37,7 @@ if($promotion->discount_for == $food->food->id)
 $result += $food->Qty*($food->food->price - $discount);
 @endphp
 <tr>
-<th scope="row">1</th>
+<th scope="row">{{$food->order_id}}</th>
 <td>{{$food->food->name}}</td>
 <td>{{$food->Qty}}</td>
 <td>{{$food->inOrder->order_time}}</td>
