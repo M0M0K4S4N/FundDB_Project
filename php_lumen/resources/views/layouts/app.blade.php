@@ -16,7 +16,7 @@
       <div class="col-md-2"></div>
       <div class="col-md-8">
         <div class="alert alert-secondary" role="alert">
-        <h1>{{ $title }}<br>
+        <font size='6'>{{ $title }}</font> <button style="float:right;" onclick="window.history.go(-1);" class="btn btn-outline-dark">Back</button>  <a href="/" style="float:right;"class="btn btn-outline-primary">Homepage</a>
           </div>
         @component('layouts.nav')
         @endcomponent
