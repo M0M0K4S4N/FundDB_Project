@@ -312,7 +312,6 @@ class ManagerController extends Controller
             'title' => 'Manager: Adding Promotion',
 		]);
 		
-]);
     }
 
 	public function store_promotion_add(Request $request)
