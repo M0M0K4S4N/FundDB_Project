@@ -13,7 +13,7 @@
                 </div><!--section title-->
             </div>  
         </section><!--about us-->
-@foreach ($orders as $order)
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWHqgPdKV5J3TRtnvVlAsQtcKLJIGQ17U&callback=initMap"
   type="text/javascript"></script>
@@ -23,7 +23,7 @@
             var marker;
  
             function initialize() {
-
+@foreach ($orders as $order)
                 myLatlng = new google.maps.LatLng({{$order->lat}},{{$order->long}});
 @endforeach
                 var mapOptions = {

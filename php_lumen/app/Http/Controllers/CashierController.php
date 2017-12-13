@@ -49,7 +49,7 @@ class CashierController extends Controller
         $order_id = $request->order_id;
         $food_id = $request->food_id;
         $foods = Orderfoodlist::where('order_id','=', $table, 'AND', 'isPaid', '=', '0')->update(['Orderfoodlists.isPaid' => 1]);
-       return redirect('/cashier');
+       return redirect('/');
     }
 
 }

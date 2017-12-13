@@ -1,7 +1,11 @@
+@section('header')
+<meta http-equiv="Refresh" content="5">
+@endsection
+
 @extends('layouts.app')
 
 @section('content')
-<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/cashier';">Back</button>
+<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="location.href='/delivery';">Back</button>
 <table class="table table-bordered">
   <thead>
     <tr class="table-active">
@@ -10,7 +14,8 @@
       <th>รายการอาหารที่สั่ง</th>
       <th>จำนวน</th>
       <th>ราคาต่อหน่วย</th>
-      <th>ราคา</th>    
+      <th>ราคา</th>
+      <th>ยืนยันการจัดส่ง</th>    
     </tr>
   </thead>
   <tbody>
@@ -40,42 +45,55 @@ $result += $food->Qty*($food->food->price - $discount);
                             @if($food->isPaid == 1)
                                       จ่ายเงินแล้ว
                                    @else
-                                      เสิร์ฟแล้ว
+                                      กำลังจัดส่ง
                                   @endif
                          @else
-                            รอเสิร์ฟ
+                            รอจัดส่ง
                         @endif
                     @elseif($food->cooking_flag == 1)
                         กำลังทำอาหาร
                     @else
-                        รอคิว
+                        รอคิวทำอาหาร
                     @endif 
           </td>
         <td>{{$food->food->name}}</td>
         <td>{{$food->Qty}}</td>
         <td>{{$food->food->price - $discount}}</td>
         <td>{{ $food->Qty*($food->food->price - $discount)}}</td>
+          <form method="post" action="/delivery/served">
+            <input type="hidden" name="order_id" value="{{$food->order_id}}">
+            <input type="hidden" name="food_id" value="{{$food->food_id}}">
+              @if ($food->isServe == 0)
+                  <td><button type="submit" class="btn btn-success" 
+                  @if($food->serve_flag == 0)
+                      disabled
+                  @endif
+                >confirm</button></td>
+              @else
+          <td><button type="button" class="btn btn-danger" disabled>confirmed</button></td>
+          @endif
+        </form>
     </tr>
 @endforeach
       <tr>   
-      <td colspan="5">รวม</td>
+      <td colspan="6">รวม</td>
       <th scope="row">{{$result}}</th>
       </tr>
 
       <tr>   
-      <td colspan="5">รับเงินมา</td>
+      <td colspan="6">รับเงินมา</td>
       <td><input type='text' id='input1' onkeyup='nStr()'> <br/></td>
       </tr>
 
       <tr>   
-      <td colspan="5">เงินทอน</td>
+      <td colspan="6">เงินทอน</td>
       <td><font id="show" color=""></font> </td>
       </tr>
 
       <tr>
-      <td colspan="5">ยืนยันการจ่ายเงิน</td>
+      <td colspan="6">ยืนยันการจ่ายเงิน</td>
       @foreach($foods as $food)
-      <form method="post" action="/cashier/paid{{$food->order_id}}">
+      <form method="post" action="/delivery/paid{{$food->order_id}}">
         <input type="hidden" name="order_id" value="{{ $food->order_id}}">
         <input type="hidden" name="food_id" value="{{ $food->food_id}}">
         @endforeach
