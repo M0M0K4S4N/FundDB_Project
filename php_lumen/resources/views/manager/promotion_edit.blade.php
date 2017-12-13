@@ -9,7 +9,12 @@
 </div>
 <div class="form-group">
   <label for="discount_for">Discount_for</label>
-  <input type="number" class="form-control" name="discount_for"  value="{{$promotion->discount_for}}" required>
+  <!-- <input type="number" class="form-control" name="discount_for"  value="{{$promotion->discount_for}}" required> -->
+  <select name="discount_for" class="form-control">
+    @foreach($foods as $food)
+    <option value="{{$food->id}}">({{$food->id}}){{$food->name}}</option>
+    @endforeach
+  </select>
 </div>
 <div class="form-group">
   <label for="discount_value">Discount_value</label>

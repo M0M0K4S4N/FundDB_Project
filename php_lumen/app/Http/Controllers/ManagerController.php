@@ -19,7 +19,7 @@ class ManagerController extends Controller
 {
     public function report_view()
 	{
-	
+
 		/*$chart_orders = DB::table('Orderfoodlists')
 					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
 					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
@@ -64,16 +64,16 @@ class ManagerController extends Controller
 					->get();
 
 		$chart_orders = $chart_orders_fried_chicken->merge($chart_orders_french_fries)->merge($chart_orders_coke)->sortByDesc('date');
-		
+
         return view('manager.food_report', [
           'title' => 'Report',
           'charts' => $chart_orders
         ]);
-		
 
-	
+
+
 	}
-	
+
 	public function food_view()
 	{
 		$foods = Food::all();
@@ -162,7 +162,7 @@ class ManagerController extends Controller
 		$promotion = DB::table('Promotions')
 					->where('Promotions.discount_for' , '=', $id )
 					->delete();
-		
+
 		$food->delete();
 
 		return redirect('/manager-menu');
@@ -271,8 +271,11 @@ class ManagerController extends Controller
 
 	public function promotion_add()
     {
+
+        $foods = Food::all();
         return view('manager.promotion_add', [
             'title' => 'Manager: Adding Promotion',
+            'foods' => $foods
 		]);
 
     }
@@ -302,11 +305,13 @@ class ManagerController extends Controller
     {
 		$id = $request->input('id');
 
+    $foods = Food::all();
 		$promotion = Promotion::findOrFail($id);
 
         return view('manager.promotion_edit', [
             'title' => 'Manager: Editing Promotion',
 			'promotion' => $promotion,
+      'foods' => $foods
 		]);
 
     }
