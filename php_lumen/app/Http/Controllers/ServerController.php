@@ -32,7 +32,7 @@ class ServerController extends Controller
 
     public function show_order_list_delivery($table)
     {
-            $foods = Orderfoodlist::where('order_id','=', $table)->get();
+            $foods = Orderfoodlist::where('order_id','=', $table)->orderBy('serve_flag','DESC')->get();
             $promotions = Promotion::all();
         return view('server.show_order_list_delivery', [
             'title' => 'Show detail',
@@ -49,7 +49,7 @@ class ServerController extends Controller
                     ->where('cooking_flag', '=', '0')
                     ->where('serve_flag', '=', '0')*/
                     ->where('isServe', '=', '0')
-                    ->orderBy('order_id','ASC')
+                    ->orderBy('serve_flag','DESC')
                     ->get();
 
         return view('server.waiter', [
@@ -93,7 +93,7 @@ class ServerController extends Controller
                     ->where('Orderfoodlists.order_id', $order_id)
                     ->where('Orderfoodlists.food_id', $food_id)
                     ->update(['Orderfoodlists.isServe' => 1]);
-       return redirect('/delivery');
+       return redirect("/delivery/detail$order_id");
 
     }
     public function edit_paid_for_delivery(Request $request , $table)
