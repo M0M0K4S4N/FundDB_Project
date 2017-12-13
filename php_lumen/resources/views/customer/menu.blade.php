@@ -5,6 +5,7 @@
     }
 
  </style>
+
 @endsection
 
 @extends('layouts.app')
@@ -16,6 +17,12 @@
 <object align="right">You are  <a href='/customer/profile'><font size="4" color="blue">{{$user->name}}</font></a> <button type="button" class="btn btn-danger btn-sm" onclick="location.href='/logout';">Logout</button>
 </object>
 <form method="post" action="/customer/order">
+  <label for="delivery_button">
+  <div class="alert alert-info" role="alert">
+    ต้องการ Delivery :
+    <input type="checkbox" class="pull-right" style="float:right;"id="delivery_button"name="delivery" value="1">
+  </div>
+
 @for ($i = 1; $i <= count($foods); $i++)
     @if ($i % 3 == 1)
 
@@ -49,10 +56,12 @@
     <textarea class="form-control" name="detail" value=""></textarea>
   </div>
 </div>
+</label>
 <div align="right">
 <button type="submit" class="btn btn-primary btn-lg" align="right">Order</button>
 </div>
 </form>
+
 
 
 @endsection

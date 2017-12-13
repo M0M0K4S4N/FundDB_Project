@@ -117,7 +117,14 @@ class CustomerController extends Controller
         }
         $newOrder = new Order;
         $newOrder->customer_id = $user->id;
-        $newOrder->delivery_flag = 0; ###temp
+
+        if($request->input('delivery')){
+          $newOrder->delivery_flag = 1; 
+        }else{
+          $newOrder->delivery_flag = 0;
+        }
+
+
         $newOrder->detail = $detail;
         $newOrder->order_time = Carbon::now();
         $newOrder->save();
