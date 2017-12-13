@@ -28,5 +28,5 @@
   </div> <br>
     @endif
 @endfor
-<a href='/manager-menu/report'><h1>Report</h1></a>
+<!-- <a href='/manager-menu/report'><h1>Report</h1></a> -->
 @endsection
