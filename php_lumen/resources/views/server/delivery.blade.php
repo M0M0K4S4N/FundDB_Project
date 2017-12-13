@@ -11,6 +11,7 @@
     <tr class="table-active">
       <th>Order</th>
       <th>Adress</th>
+      <th>ชื่อลูกค้า</th>
       <th>Detail & Paid</th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
       <tr>
               <td>{{$order->order_id}}</td>
               <td><a href="/delivery/mapOf{{$order->customer_id}}">{{$order->address}}</a></td>
+              <td>{{$order->name}}</td>
               <td><button type="button" class="btn btn-primary" onclick="location.href='/delivery/detail{{$order->order_id}}';"
               @if($order->isPaid == 1)
                   disabled
