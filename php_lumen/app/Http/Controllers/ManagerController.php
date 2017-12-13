@@ -347,7 +347,7 @@ class ManagerController extends Controller
 		$promotion = Promotion::findOrFail($id);
 		$promotion->delete();
 
-		return redirect('/manager-Promotion');
+		return redirect('/manager-promotion');
 
 	}
 }
