@@ -59,9 +59,7 @@ $result += $food->Qty*($food->food->price - $discount);
 @endforeach
       <tr>   
       <td colspan="5">รวม</td>
-      <th scope="row">{{$result}} @if($food->isPaid == 1)
-                  จ่ายแล้ว
-              @endif</th>
+      <th scope="row">{{$result}}</th>
       </tr>
 
       <tr>   
@@ -81,11 +79,7 @@ $result += $food->Qty*($food->food->price - $discount);
         <input type="hidden" name="order_id" value="{{ $food->order_id}}">
         <input type="hidden" name="food_id" value="{{ $food->food_id}}">
         @endforeach
-      <td><button type="submit" class="btn btn-primary"
-                  @if($food->isPaid == 1)
-                      disabled
-                  @endif
-        >Paid</button></td>
+      <td><button type="submit" class="btn btn-primary">Paid</button></td>
      </form>
       </tr>
   </tbody>

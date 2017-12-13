@@ -17,13 +17,13 @@ class CashierController extends Controller
 		//$orders = Orderfoodlist::All();
         $orders = DB::table('Orderfoodlists')
                     ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
-                    ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+                    ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id') 
+                    ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
                     ->where('delivery_flag','=','0')
                     ->where('isPaid', '=','0')
-                    ->groupBy('order_id')
-                  //  ->join('Customers', 'Orders.Customer_id' , '=', 'Customers.id')
+                    ->groupBy('Orders.id')
+                  
                     ->get();
-        //$foods = Orderfoodlist::where('order_id','=', $table)->get();
         $promotions = Promotion::all();
         
         return view('cashier.cashier', [

@@ -20,7 +20,7 @@ class ServerController extends Controller
                     ->join('Customers', 'Customers.id' , '=', 'Orders.customer_id')
                     ->where('delivery_flag', '=', '1', 'AND', 'serve_flag', '=', '1' , 'AND', 'cooking_flag', '=', '1','AND')
                     ->where('isPaid', '=','0')
-                    ->groupBy('Customer_id')
+                    ->groupBy('Orders.id')
                     ->orderBy('Customer_id','ASC')
                     ->get();
 
