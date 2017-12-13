@@ -30,7 +30,7 @@
     @endif
     <div class="card">
       <label for="img{{$i}}">
-      <img class="card-img-top" src="..{{$foods[$i-1]->picture}}" alt="Card image cap">
+      <img class="card-img-top img-thumbnail " src="..{{$foods[$i-1]->picture}}" alt="Responsive image">
     <div class="card-body">
       <h4 class="card-title">{{$foods[$i-1]->name}}</h4>
     </div>

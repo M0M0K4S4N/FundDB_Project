@@ -13,37 +13,44 @@ class FoodsTableSeeder extends Seeder
     {
 
       DB::table('foods')->insert([
-        'name' => 'Fried Chicken',
+        'name' => 'ไก่ทอด',
         'price' => 30,
         'picture' => '/foodPic/fired_chicken.jpg',
         'type' => 'meal',
       ]);
 
       DB::table('foods')->insert([
-        'name' => 'Tom Yum Kung',
+        'name' => 'ต้มยำกุ้ง',
         'price' => 35,
-        'picture' => '/foodPic/fired_chicken.jpg',
+        'picture' => '/foodPic/tom_yum_kung.jpg',
         'type' => 'meal',
       ]);
 
       DB::table('foods')->insert([
-        'name' => 'French Fries',
+        'name' => 'ปูผัดผงกะกรี่',
+        'price' => 35,
+        'picture' => '/foodPic/curry_crab.jpg',
+        'type' => 'meal',
+      ]);
+
+      DB::table('foods')->insert([
+        'name' => 'เฟรนช์ฟราย',
         'price' => 30,
-        'picture' => '/foodPic/fired_chicken.jpg',
+        'picture' => '/foodPic/french_fired.jpg',
         'type' => 'snack',
       ]);
 
       DB::table('foods')->insert([
-        'name' => 'Coke',
-        'price' => 20,
-        'picture' => '/foodPic/fired_chicken.jpg',
+        'name' => 'โค้ก',
+        'price' => 15,
+        'picture' => '/foodPic/coke.jpg',
         'type' => 'drink',
       ]);
 
       DB::table('foods')->insert([
-        'name' => 'Ice Cream',
+        'name' => 'ไอศกรีมกะทิ',
         'price' => 20,
-        'picture' => '/foodPic/fired_chicken.jpg',
+        'picture' => '/foodPic/coconut_icecream.jpg',
         'type' => 'dessert',
       ]);
 
