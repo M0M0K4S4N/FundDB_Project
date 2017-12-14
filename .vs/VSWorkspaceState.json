@@ -5,12 +5,12 @@
     "\\php_lumen\\app",
     "\\php_lumen\\app\\Http",
     "\\php_lumen\\app\\Http\\Controllers",
+    "\\php_lumen\\app\\Models",
     "\\php_lumen\\resources",
     "\\php_lumen\\resources\\views",
-    "\\php_lumen\\resources\\views\\customer",
-    "\\php_lumen\\resources\\views\\layouts",
-    "\\php_lumen\\resources\\views\\manager"
+    "\\php_lumen\\resources\\views\\chef",
+    "\\php_lumen\\resources\\views\\customer"
   ],
-  "SelectedNode": "\\php_lumen\\app\\Http\\Controllers\\CashierController.php",
+  "SelectedNode": "\\php_lumen\\app\\Http\\Controllers\\ManagerController.php",
   "PreviewInSolutionExplorer": false
 }

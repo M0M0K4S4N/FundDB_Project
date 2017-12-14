@@ -12,6 +12,7 @@
 <tr>
 <th>Order#</th>
 <th>List</th>
+<th>Detail</th>
 <th>Qty</th>
 <th>Time</th>
 <th>In Progress</th>
@@ -27,6 +28,8 @@
   <th scope="row">{{ $order->order_id}}</th>
 
   <td>{{$order->name}}</td>
+
+  <td>{{$order->detail}}
 
   <td>{{$order->Qty}}</td>
 
