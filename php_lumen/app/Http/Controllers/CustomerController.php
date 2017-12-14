@@ -119,7 +119,7 @@ class CustomerController extends Controller
         $newOrder->customer_id = $user->id;
 
         if($request->input('delivery')){
-          $newOrder->delivery_flag = 1; 
+          $newOrder->delivery_flag = 1;
         }else{
           $newOrder->delivery_flag = 0;
         }
@@ -134,7 +134,7 @@ class CustomerController extends Controller
           $newFood->order_id = $newOrder->id;
           $newFood->food_id = $food;
           $newFood->Qty = $qty[$food-1];
-          $newFood->cook_by = null;
+          
           $newFood->cooking_flag = 0;
           $newFood->serve_flag = 0;
           $newFood->isPaid = 0;
