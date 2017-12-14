@@ -19,7 +19,7 @@
 </div>
 <div class="form-group">
   <label for="discount_value">Discount_value</label>
-  <input type="number" class="form-control" name="discount_value"  placeholder="percent" required>
+  <input type="number" class="form-control" name="discount_value"  placeholder="baht" required>
 </div>
 <div class="form-group">
   <label for="start_date">Start_Date</label>
