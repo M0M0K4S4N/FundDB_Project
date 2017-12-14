@@ -12,6 +12,7 @@
 <tr>
 <th>Order#</th>
 <th>List</th>
+<th>Detail</th>
 <th>Qty</th>
 <th>Time</th>
 <th>In Progress</th>
@@ -27,7 +28,7 @@
   <th scope="row">{{ $order->order_id}}</th>
 
   <td>{{$order->name}}</td>
-
+  <td>{{$order->detail}}</td>
   <td>{{$order->Qty}}</td>
 
   <td>{{$order->order_time}}</td>
@@ -37,18 +38,18 @@
   <input type="hidden" name="food_id" value="{{ $order->food_id}}">
   @if ($order->cooking_flag == 0)
 	<td><button type="submit" class="btn btn-info" value="cooking"></td>
-  @else 
+  @else
 	<td><button type="button" class="btn btn-success" ></td>
   @endif
 </form>
 
-	
+
 <form method="post" action="/chef-queue/ready">
   <input type="hidden" name="order_id" value="{{ $order->order_id}}">
   <input type="hidden" name="food_id" value="{{ $order->food_id}}">
   @if ($order->serve_flag == 0)
 	<td><button type="submit" class="btn btn-info" value="ready"></td>
-  @else 
+  @else
 	<td><button type="button" class="btn btn-success" ></td>
   @endif
 </form>
