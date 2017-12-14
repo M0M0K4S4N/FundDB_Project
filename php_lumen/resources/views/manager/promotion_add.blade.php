@@ -10,7 +10,7 @@
 <div class="form-group">
   <label for="discount_for">Discount_for</label>
   <br>
-	 <select name="discount_for">
+	 <select class="form-control"name="discount_for">
 		@foreach ($foods as $food)
 			<option value="{{$food->id}}"> {{$food->name}}</option>
 		@endforeach
