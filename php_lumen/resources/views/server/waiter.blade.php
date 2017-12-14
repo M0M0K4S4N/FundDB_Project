@@ -10,8 +10,9 @@
   <thead>
       <tr class="bg-info">
         <th>Status</th>
+        <th>Order</th>
+        <th>Food's name</th>
         <th>Table</th>
-        <th>Food's detail</th>
         <th>Confirm</th>
       </tr>
   </thead>
@@ -41,6 +42,7 @@
           </td>
           <td>{{$order->order_id}}</td>
           <td>{{$order->name}}</td>
+          <td>{{$order->cusname}}</td>
           <form method="post" action="/waiter/served">
             <input type="hidden" name="order_id" value="{{ $order->order_id}}">
             <input type="hidden" name="food_id" value="{{ $order->food_id}}">

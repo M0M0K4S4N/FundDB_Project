@@ -42,15 +42,17 @@ class ServerController extends Controller
     }
      public function waiter()
     {
-        $orders = DB::table('Orderfoodlists')
+        $orders = DB::table('Orderfoodlists', 'Orders')
                     ->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
                     ->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+                    ->join('Customers', 'Customers.id' , '=', 'Orders.customer_id')
                     /*->where('delivery_flag', '=', '0')
                     ->where('cooking_flag', '=', '0')
                     ->where('serve_flag', '=', '0')*/
                     ->where('isServe', '=', '0')
                     ->orderBy('serve_flag','DESC')
-                    ->get();
+                    ->get(['Customers.name as cusname','Foods.*','Orders.*','Orderfoodlists.*']);
+        
 
         return view('server.waiter', [
             'title' => 'Serve',
