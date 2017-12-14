@@ -19,14 +19,7 @@ class ManagerController extends Controller
 {
     public function report_view()
 	{
-	
-		/*$chart_orders = DB::table('Orderfoodlists')
-					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
-					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
-					->where( 'Orderfoodlists.isPaid' , '=', 1)
-					->get();
-		*/
-
+		/*
 		//1st menu
 		$chart_orders_1 = DB::table('Orderfoodlists')
 					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
@@ -106,6 +99,32 @@ class ManagerController extends Controller
           'title' => 'Report',
           'charts' => $chart_orders
         ]);
+		*/
+		$lists = Food::all();
+		$chart_orders = [];
+		foreach ($lists as $list){
+			$chart_orders_[$list->id] = DB::table('Orderfoodlists')
+					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
+					 DB::raw('Foods.name as name'),
+					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
+					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+					->where( 'Orderfoodlists.isPaid' , '=', 1)
+					->where( 'Foods.id' ,'=', $list->id)
+					->groupBy(DB::raw('date'))
+					->get();
+						
+		}
+		$chart_orders = $chart_orders_[1]->merge($chart_orders_[2])
+		->merge($chart_orders_[3])->merge($chart_orders_[4])
+		->merge($chart_orders_[5])->merge($chart_orders_[6])
+		->sortByDesc('date');	
+		
+		return view('manager.food_report', [
+          'title' => 'Report',
+          'charts' => $chart_orders
+        ]);
+
 		
 
 	
@@ -308,8 +327,11 @@ class ManagerController extends Controller
 
 	public function promotion_add()
     {
+		$foods = Food::all();
+		
         return view('manager.promotion_add', [
             'title' => 'Manager: Adding Promotion',
+			'foods' => $foods
 		]);
 		
     }
@@ -379,7 +401,7 @@ class ManagerController extends Controller
 		$promotion = Promotion::findOrFail($id);
 		$promotion->delete();
 
-		return redirect('/manager-Promotion');
+		return redirect('/manager-promotion');
 
 	}
 }

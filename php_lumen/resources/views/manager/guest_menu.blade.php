@@ -4,6 +4,7 @@
 
 <a href="/"><button type="button" class="btn btn-primary">Back to Homepage</button></a>
 <a href="/manager-menu/food-add"><button type="button" class="btn btn-primary">Add Food</button></a>
+<a href='/manager-menu/report'><h1>Report</h1></a>
 @for ($i = 1; $i <= count($foods); $i++)
     @if ($i % 3 == 1)
     <div class="card-deck">
@@ -28,5 +29,5 @@
   </div> <br>
     @endif
 @endfor
-<a href='/manager-menu/report'><h1>Report</h1></a>
+
 @endsection

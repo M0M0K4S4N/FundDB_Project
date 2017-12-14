@@ -11,12 +11,9 @@
   <label for="discount_for">Discount_for</label>
   <br>
 	 <select name="discount_for">
-		<option value="1">ไก่ทอด</option>
-		<option value="2">ต้มยำกุ้ง</option>
-		<option value="3">ปูผัดผงกะหรี่</option>
-		<option value="4">เฟรนช์ฟราย</option>
-		<option value="5">โค้ก</option>
-		<option value="6">ไอศกรีมกะทิ</option>
+		@foreach ($foods as $food)
+			<option value="{{$food->id}}"> {{$food->name}}</option>
+		@endforeach
 	  </select>
   <br>
 </div>
