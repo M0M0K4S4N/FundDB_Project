@@ -19,89 +19,19 @@ class ManagerController extends Controller
 {
     public function report_view()
 	{
-		/*
-		//1st menu
-		$chart_orders_1 = DB::table('Orderfoodlists')
-					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
-					 DB::raw('Foods.name as name'),
-					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
-					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
-					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
-					->where( 'Orderfoodlists.isPaid' , '=', 1)
-					->where( 'Foods.name' ,'=', 'ไก่ทอด')
-					->groupBy(DB::raw('date'))
-					->get();
-
-		//2nd menu
-		$chart_orders_2 = DB::table('Orderfoodlists')
-					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
-					 DB::raw('Foods.name as name'),
-					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
-					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
-					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
-					->where( 'Orderfoodlists.isPaid' , '=', 1)
-					->where( 'Foods.name' ,'=', 'ต้มยำกุ้ง')
-					->groupBy(DB::raw('date'))
-					->get();
-
-		//3rd
-		$chart_orders_3 = DB::table('Orderfoodlists')
-					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
-					 DB::raw('Foods.name as name'),
-					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
-					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
-					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
-					->where( 'Orderfoodlists.isPaid' , '=', 1)
-					->where( 'Foods.name' ,'=', 'ปูผัดผงกะหรี่')
-					->groupBy(DB::raw('date'))
-					->get();
-
-		//4th
-		$chart_orders_4 = DB::table('Orderfoodlists')
-					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
-					 DB::raw('Foods.name as name'),
-					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
-					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
-					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
-					->where( 'Orderfoodlists.isPaid' , '=', 1)
-					->where( 'Foods.name' ,'=', 'เฟรนช์ฟราย')
-					->groupBy(DB::raw('date'))
-					->get();
-
-		//5th
-		$chart_orders_5 = DB::table('Orderfoodlists')
-					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
-					 DB::raw('Foods.name as name'),
-					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
-					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
-					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
-					->where( 'Orderfoodlists.isPaid' , '=', 1)
-					->where( 'Foods.name' ,'=', 'โค้ก')
-					->groupBy(DB::raw('date'))
-					->get();
-
-		//6th
-		$chart_orders_6 = DB::table('Orderfoodlists')
-					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
-					 DB::raw('Foods.name as name'),
-					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
-					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
-					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
-					->where( 'Orderfoodlists.isPaid' , '=', 1)
-					->where( 'Foods.name' ,'=', 'ไอศกรีมกะทิ')
-					->groupBy(DB::raw('date'))
-					->get();
-
-		$chart_orders = $chart_orders_1->merge($chart_orders_2)->merge($chart_orders_3)
-		->merge($chart_orders_4)->merge($chart_orders_5)->merge($chart_orders_6)->sortByDesc('date');
-		
-        return view('manager.food_report', [
-          'title' => 'Report',
-          'charts' => $chart_orders
-        ]);
-		*/
 		$lists = Food::all();
-		$chart_orders = [];
+
+		$chart_orders_[0] = DB::table('Orderfoodlists')
+					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
+					 DB::raw('Foods.name as name'),
+					 DB::raw('sum(Orderfoodlists.Qty) as sum'))
+					->join('Foods', 'Orderfoodlists.food_id', '=', 'Foods.id' )
+					->join('Orders', 'Orderfoodlists.order_id' , '=', 'Orders.id')
+					->where( 'Orderfoodlists.isPaid' , '=', 1)
+					->where( 'Foods.id' ,'=', 0)
+					->groupBy(DB::raw('date'))
+					->get(); 
+
 		foreach ($lists as $list){
 			$chart_orders_[$list->id] = DB::table('Orderfoodlists')
 					->select(DB::raw("date_format(Orders.order_time, '%Y-%m-%d') as date"),
@@ -115,19 +45,16 @@ class ManagerController extends Controller
 					->get();
 						
 		}
-		$chart_orders = $chart_orders_[1]->merge($chart_orders_[2])
-		->merge($chart_orders_[3])->merge($chart_orders_[4])
-		->merge($chart_orders_[5])->merge($chart_orders_[6])
-		->sortByDesc('date');	
 		
+		foreach ($lists as $list) {
+			$chart_orders_[0] = $chart_orders_[0]->merge($chart_orders_[$list->id]);
+		}
+
 		return view('manager.food_report', [
           'title' => 'Report',
-          'charts' => $chart_orders
+          'charts' => $chart_orders_[0]
         ]);
 
-		
-
-	
 	}
 	
 	public function food_view()
